@@ -14,4 +14,3 @@ function enqueue_universal_style() {
 	wp_enqueue_style( 'style', get_template_directory_uri() );
   wp_enqueue_style( 'universal-theme', get_template_directory_uri() . '/assets/css/universal-theme.css', 'style', null, null );
 }
-// ' (T_ENCAPSED_AND_WHITESPACE), expecting ')'
