@@ -1,0 +1,11 @@
+{
+    "version": 3,
+    "mappings": "ACAA,AAAA,OAAO,CAAC;EACN,gBAAgB,EAAE,OAAO;EACzB,WAAW,EAAE,IAAI;EACjB,cAAc,EAAE,IAAI;CAIG;;AAHtB,AAAD,YAAM,CAAC;EACL,MAAM,EAAE,CAAC;EACT,OAAO,EAAE,CAAC;EACV,UAAU,EAAE,IAAI;CAAG;;ACPvB,AAAA,UAAU,CAAC;EACT,SAAS,EAAE,MAAM;EACjB,KAAK,EAAE,GAAG;EACV,MAAM,EAAE,IAAI;CAAG",
+    "sources": [
+        "../sass/universal-theme.sass",
+        "../sass/_header.sass",
+        "../sass/_grid.sass"
+    ],
+    "names": [],
+    "file": "universal-theme.css"
+}

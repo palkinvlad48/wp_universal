@@ -1,16 +1,35 @@
 <?php
+// Добавление расширенных возможностей
 
-//wp_enqueue_style( 'slick', get_template_directory_uri() . '/slick/slick.css');
+if ( ! function_exists( 'universal_theme_setup' ) ) :
 
-//wp_enqueue_style( 'slick_theme', get_template_directory_uri() . '/slick/slick-theme.css');
-//wp_enqueue_style( 'animate', get_template_directory_uri() . '/css/animate.css');
-//wp_enqueue_style( 'bootstrap-grid', get_template_directory_uri() . '/css/bootstrap-grid.min.css');
-//wp_enqueue_style( 'style', get_template_directory_uri() . '/css/style.css');
+	function universal_theme_setup() {
+		// добавление тэга title
+		add_theme_support( 'title-tag' );
 
-add_action( 'wp_enqueue_scripts', 'enqueue_universal_style' );
+		// добавление кастомного логотипа
+		add_theme_support( 'custom-logo', [
+			'width'		=> 163,
+			'flex-height' => true,
+			'header-text' => 'Universal',
+			'unlink-homepage-logo' => false, // с wp 5.5
+		]);
+		// Регистрация меню
+		register_nav_menus( [
+				'header_menu' => 'Меню в шапке',
+				'footer_menu' => 'Меню в подвале'
+			] 
+		);
+
+	}
+endif;
+add_action( 'after_setup_theme', 'universal_theme_setup');
+
+
+// Подключение стилей и скраптов
+
 function enqueue_universal_style() {
-	//wp_deregister_script( 'jquery' );
-	//wp_register_script( 'jquery', '//ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js');
 	wp_enqueue_style( 'style', get_template_directory_uri() );
-  wp_enqueue_style( 'universal-theme', get_template_directory_uri() . '/assets/css/universal-theme.css', 'style', null, null );
+  wp_enqueue_style( 'universal-theme', get_template_directory_uri() . '/assets/css/universal-theme.css', 'style', time() );
 }
+add_action( 'wp_enqueue_scripts', 'enqueue_universal_style' );
