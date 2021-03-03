@@ -8,7 +8,7 @@ if ( ! function_exists( 'universal_theme_setup' ) ) :
 		add_theme_support( 'title-tag' );
 
 		// добавление миниатюр
-		add_theme_support( 'post-tumbnails', array( 'post' ) );
+		add_theme_support( 'post-thumbnails', array( 'post' ) );
 
 
 		// добавление кастомного логотипа
@@ -38,4 +38,4 @@ function enqueue_universal_style() {
 	wp_enqueue_style( 'Roboto-Slab', 'https://fonts/googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
 
 }
-add_action( 'wp_enqueue_sскшзе', 'enqueue_universal_style' );
+add_action( 'wp_enqueue_scripts', 'enqueue_universal_style' );
