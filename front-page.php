@@ -8,7 +8,7 @@
 
           $myposts = $posts = get_posts( [
 	          'numberposts' => 1,
-            'offset' => 11,
+            'offset' => 2,
 	          'category_name' => 'javascript',
             ]
           );
@@ -95,9 +95,9 @@
           global $post;
 
           $myposts = $posts = get_posts( [
-	          'numberposts' => 7,
+	          'numberposts' => 4,
             //'offset' => 1,
-            'category_name' => 'articles',
+            'category_name' => 'html, css, javascript, web-design',
             ]
           );
           // Есть ли посты
