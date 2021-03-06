@@ -19,10 +19,10 @@
         ?>
         <!-- выводим записи -->
       
-        <img src="<?php the_post_thumbnail_url(); ?>" class="post-thumb" alt="">
+        <img src="<?php the_post_thumbnail_url(); ?>" class="post-thumb" alt="Фоновый рисунок">
         <?php $autor_id = get_the_author_meta('ID'); ?>
         <a href="<?php echo get_author_posts_url($autor_id); ?>" class="author">
-          <img src="<?php echo get_avatar_url($autor_id); ?>" class="avatar" alt="">
+          <img src="<?php echo get_avatar_url($autor_id); ?>" class="avatar" alt="Фото автора">
           <div class="author-bio">
             <span class="author-name"><?php the_author(); ?></span>
             <span class="author-rank">Должность</span> 
@@ -110,7 +110,7 @@
             <a class="article-permalink" href="<?php echo get_the_permalink(); ?>">
              <h4 class="article-title"><?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?></h4>
             </a>
-            <img width="65" height="65" src="<?php echo get_the_post_thumbnail_url( null, 'thumbnail'); ?>" alt="">
+            <img width="65" height="65" src="<?php echo get_the_post_thumbnail_url( null, 'thumbnail'); ?>" alt="Миниатюра">
           </li>
           <?php
           }
@@ -141,7 +141,7 @@
   ?>
     <li class="article-grid-item article-grid-item-1">
       <a href="<?php the_permalink(); ?>" class="article-grid-permalink">
-        <img class="article-grid-thumb" src="<?php echo get_the_post_thumbnail_url();?>"  alt="">
+        <img class="article-grid-thumb" src="<?php echo get_the_post_thumbnail_url();?>"  alt="Рисунок поста">
         <span class="category-name"><?php 
           $category = get_the_category(); echo $category[0]->name; ?>
         </span>
@@ -150,7 +150,7 @@
         <div class="article-grid-info">
           <div class="author">
             <?php $autor_id = get_the_author_meta('ID'); ?>
-            <img src="<?php echo get_author_posts_url($autor_id); ?>" alt="" class="author-avatar">
+            <img src="<?php echo get_avatar_url($autor_id); ?>" alt="Фото автора" class="author-avatar">
             <span class="author-name"><strong><?php the_author(); ?></strong>: <?php echo mb_strimwidth(the_author_meta('description'), 0, 30, '...'); ?></span>
           </div>
           <div class="comments">
@@ -166,7 +166,7 @@
       // выводим 2-й пост
   ?>
     <li class="article-grid-item article-grid-item-2">
-      <img src="<?php echo get_the_post_thumbnail_url() ?>" alt="" class="article-grid-thumb">
+      <img src="<?php echo get_the_post_thumbnail_url() ?>" alt="Фоновый рисунок" class="article-grid-thumb">
       <a href="<?php the_permalink(); ?>" class="article-grid-permalink">
         <span class="tag">
         <?php $posttags = get_the_tags(); 
@@ -179,6 +179,23 @@
           $category = get_the_category(); echo $category[0]->name; ?>
         </span>
         <h4 class="article-grid-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...'); ?></h4>
+        <div class="article-grid-info">
+          <div class="author">
+            <?php $autor_id = get_the_author_meta('ID'); ?>
+            <img src="<?php echo get_avatar_url($autor_id); ?>" alt="Фото автора" class="author-avatar">
+            <span class="author-name"><?php the_author(); ?></span>
+            
+          </div>
+          <div class="comments">
+            <span class="date"><?php the_time( 'j F' )?></span>
+            <!--img src="<php echo get_template_directory_uri() . '/assets/images/comment.png' ?>" alt="icon comment" class="icon comments-icon"-->
+            <span class="icon comment"></span>
+            <span class="comments-counter"><?php comments_number('0', '1', '%'  )?></span>
+            <!--img src="<php echo get_template_directory_uri() . '/assets/images/heart.png'>" alt="icon likes" class="icon likes-icon"-->
+            <span class="icon likes"></span>
+            <span class="comments-counter"><?php comments_number('0', '1', '%'  )?></span>
+          </div>
+        </div>
       </a>
     </li>
 <?php
@@ -188,7 +205,7 @@
 ?>
     <li class="article-grid-item article-grid-item-3">
       <a href="<?php the_permalink(); ?>" class="article-grid-permalink">
-      <img src="<?php echo get_the_post_thumbnail_url() ?>" alt="" class="article-grid-thumb">
+      <img src="<?php echo get_the_post_thumbnail_url() ?>" alt="Рисунок поста" class="article-grid-thumb">
       <h4 class="article-grid-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...'); ?></h4>
     </a>
   </li>

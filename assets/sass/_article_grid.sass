@@ -157,10 +157,12 @@
             border-radius: 50%
           &-name
             flex-basis: 100%
+            color: #fff
         .date, .comments, .likes
-          opacity: 0.4
+          opacity: 0.6
           display: flex
           align-items: center
+          color: #fff
           &:not(:last-child)
             margin-right: 7px
           &-counter
@@ -175,7 +177,7 @@
           &-grid
             &-title
               padding: 15px 25px 35px
-              font-family: Roboto Slab
+              font-family: 'Roboto Slab'
               font-style: normal
               font-weight: bold
               font-size: 16px
@@ -208,6 +210,20 @@
 .comments
   display: flex
   align-items: center
+  &-comment
+    width: 14px
+    height: 14px
+    background-image: url('../images/comment.png')
+    background-repeat: no-repeat
+    background-position: center
+    background-size: cover
+  &-likes
+    width: 14px
+    height: 14px
+    background-image: url('../images/heart.png')
+    background-repeat: no-repeat
+    background-position: center
+    background-size: cover
   &-icon
     fill: #BCBFC2
   &-counter

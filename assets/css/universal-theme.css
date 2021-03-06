@@ -629,16 +629,18 @@ body {
 .article-grid-item-2 .author-name {
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
+  color: #fff;
 }
 
 .article-grid-item-2 .date, .article-grid-item-2 .comments, .article-grid-item-2 .likes {
-  opacity: 0.4;
+  opacity: 0.6;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  color: #fff;
 }
 
 .article-grid-item-2 .date:not(:last-child), .article-grid-item-2 .comments:not(:last-child), .article-grid-item-2 .likes:not(:last-child) {
@@ -666,7 +668,7 @@ body {
 
 .article-grid-item-3 .article-grid-title {
   padding: 15px 25px 35px;
-  font-family: Roboto Slab;
+  font-family: 'Roboto Slab';
   font-style: normal;
   font-weight: bold;
   font-size: 16px;
@@ -720,6 +722,24 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+}
+
+.comments-comment {
+  width: 14px;
+  height: 14px;
+  background-image: url("../images/comment.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+}
+
+.comments-likes {
+  width: 14px;
+  height: 14px;
+  background-image: url("../images/heart.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
 }
 
 .comments-icon {
