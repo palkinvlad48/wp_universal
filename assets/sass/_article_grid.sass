@@ -126,6 +126,7 @@
             line-height: 25px
             margin-top: 23px
             margin-bottom: 27px
+            text-transform: uppercase
             color: #ffffff
         .tag
           padding: 5px 12px
@@ -154,6 +155,7 @@
           &-avatar
             width: 45px
             height: 45px
+            margin-right: 10px
             border-radius: 50%
           &-name
             flex-basis: 100%
@@ -167,6 +169,8 @@
             margin-right: 7px
           &-counter
             margin-left: 5px
+        .likes-icon
+          margin-left: 5px
       &-3
         grid-area: 2 / 1 / 4 / 2
         .article
@@ -213,14 +217,10 @@
   &-comment
     width: 14px
     height: 14px
-    background-image: url('../images/comment.png')
-    background-repeat: no-repeat
-    background-position: center
-    background-size: cover
   &-likes
     width: 14px
     height: 14px
-    background-image: url('../images/heart.png')
+    background-image: url('../images/heart.svg')
     background-repeat: no-repeat
     background-position: center
     background-size: cover

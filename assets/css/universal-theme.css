@@ -576,6 +576,7 @@ body {
   line-height: 25px;
   margin-top: 23px;
   margin-bottom: 27px;
+  text-transform: uppercase;
   color: #ffffff;
 }
 
@@ -623,6 +624,7 @@ body {
 .article-grid-item-2 .author-avatar {
   width: 45px;
   height: 45px;
+  margin-right: 10px;
   border-radius: 50%;
 }
 
@@ -648,6 +650,10 @@ body {
 }
 
 .article-grid-item-2 .date-counter, .article-grid-item-2 .comments-counter, .article-grid-item-2 .likes-counter {
+  margin-left: 5px;
+}
+
+.article-grid-item-2 .likes-icon {
   margin-left: 5px;
 }
 
@@ -727,16 +733,12 @@ body {
 .comments-comment {
   width: 14px;
   height: 14px;
-  background-image: url("../images/comment.png");
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
 }
 
 .comments-likes {
   width: 14px;
   height: 14px;
-  background-image: url("../images/heart.png");
+  background-image: url("../images/heart.svg");
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;

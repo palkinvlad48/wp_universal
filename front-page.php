@@ -151,7 +151,9 @@
           <div class="author">
             <?php $autor_id = get_the_author_meta('ID'); ?>
             <img src="<?php echo get_avatar_url($autor_id); ?>" alt="Фото автора" class="author-avatar">
-            <span class="author-name"><strong><?php the_author(); ?></strong>: <?php echo mb_strimwidth(the_author_meta('description'), 0, 30, '...'); ?></span>
+            <span class="author-name"><strong><?php the_author(); ?></strong>: 
+              <?php echo mb_strimwidth(the_author_meta('user_description'), 0, 20, '...'); ?>
+            </span>
           </div>
           <div class="comments">
             <img src="<?php echo get_template_directory_uri() . '/assets/images/comment.png' ?>" alt="icon comment" class="icon comments-icon">
@@ -175,8 +177,7 @@
           }
         ?>
         </span>
-        <span class="category-name"><?php 
-          $category = get_the_category(); echo $category[0]->name; ?>
+        <span class="category-name"><?php $category = get_the_category(); echo $category[0]->name; ?>
         </span>
         <h4 class="article-grid-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...'); ?></h4>
         <div class="article-grid-info">
@@ -188,11 +189,11 @@
           </div>
           <div class="comments">
             <span class="date"><?php the_time( 'j F' )?></span>
-            <!--img src="<php echo get_template_directory_uri() . '/assets/images/comment.png' ?>" alt="icon comment" class="icon comments-icon"-->
-            <span class="icon comment"></span>
+            <img src="<?php echo get_template_directory_uri() . '/assets/images/comment.svg' ?>" alt="icon comment" class="icon comments-icon">
+            <!--span class="icon comment"></span-->
             <span class="comments-counter"><?php comments_number('0', '1', '%'  )?></span>
-            <!--img src="<php echo get_template_directory_uri() . '/assets/images/heart.png'>" alt="icon likes" class="icon likes-icon"-->
-            <span class="icon likes"></span>
+            <img src="<?php echo get_template_directory_uri() . '/assets/images/heart.svg' ?>" alt="icon likes" class="icon likes-icon">
+            <!--span class="icon likes"></span-->
             <span class="comments-counter"><?php comments_number('0', '1', '%'  )?></span>
           </div>
         </div>
