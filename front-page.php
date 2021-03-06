@@ -181,7 +181,7 @@
         <h4 class="article-grid-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...'); ?></h4>
         <div class="article-grid-info">
           <div class="author">
-            <?php $autor_id = get_the_author_meta('ID'); ?>вариант
+            <?php $autor_id = get_the_author_meta('ID'); ?>
             <img src="<?php echo get_avatar_url($autor_id); ?>" alt="Фото автора" class="author-avatar">
             <span class="author-name"><?php the_author(); ?></span>
             
