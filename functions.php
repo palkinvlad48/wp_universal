@@ -37,10 +37,10 @@ function universal_theme_widgets_init() {
 			'name'          => esc_html__('Сайдбар на главной ', 'universal-theme'),
 			'id'						=> 'main-sidebar',
 			'description'		=> esc_html__('Добавьте виджеты сюда', 'universal-theme'),
-			'before_widget'	=> '<section id="%1$s" class="widget %25$s">',
+			'before_widget'	=> '<section id="%1$s" class="widget %2$s">',
 			'after_widget'	=> '</section>',
-			'before_title'	=> '<h2 class="widget-title>',
-			'after_title'		=> '</h2>'
+			'before_title'	=> '<h2 class="widget-title">',
+			'after_title'		=> '</h2>',
 		)
 	 );
 }
@@ -58,7 +58,7 @@ class Downloader_Widget extends WP_Widget {
 		parent::__construct(
 			'downloader_widget', // ID виджета, если не указать (оставить ''), то ID будет равен названию класса в нижнем регистре: Downloader_Widget
 			'Полезные файлы',
-			array( 'description' => 'Файлы для скачивания', 'classname' => 'widget_downloader', )
+			array( 'description' => 'Файлы для скачивания', 'classname' => 'widget-downloader', )
 		);
 
 		// скрипты/стили виджета, только если он активен
@@ -75,7 +75,7 @@ class Downloader_Widget extends WP_Widget {
 	 * @param array $instance сохраненные данные из настроек
 	 */
 	function widget( $args, $instance ) {
-		$title = apply_filters( 'widget_title', $instance['title'] );
+		$title = $instance['title']; //apply_filters( 'widget_title', $instance['title'] );
 		$description = $instance['description'];
 		$link = $instance['link'];
 
@@ -88,8 +88,7 @@ class Downloader_Widget extends WP_Widget {
 		}
 		if ( ! empty( $link ) ) {
 			echo '<a target="_blank" class="widget-link" href="' . $link . '">
-			<img class="widget-link" src="' . get_template_directory_uri() . '/assets/images/download.svg" >
-			Скачать</a>';
+			<img class="widget-link-icon" src="' . get_template_directory_uri() . '/assets/images/download.svg">Скачать</a>';
 		}
 		echo $args['after_widget'];
 	}
@@ -135,23 +134,24 @@ class Downloader_Widget extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-
+		$instance['description'] = ( ! empty( $new_instance['description'] ) ) ? strip_tags( $new_instance['description'] ) : '';
+		$instance['link'] = ( ! empty( $new_instance['link'] ) ) ? strip_tags( $new_instance['link'] ) : '';
 		return $instance;
 	}
 
-	// скрипт виджета
+	// скрипт виджета (add_my_widget_scripts - было)
 	function add_downloader_widget_scripts() {
 		// фильтр чтобы можно было отключить скрипты
-		if( ! apply_filters( 'show_my_widget_script', true, $this->id_base ) )
+		if( ! apply_filters( 'show_downloader_widget_script', true, $this->id_base ) )
 			return;
 
 		$theme_url = get_stylesheet_directory_uri();
 
-		wp_enqueue_script('my_widget_script', $theme_url .'/my_widget_script.js' );
+		wp_enqueue_script('downloader_widget_script', $theme_url .'/downloader_widget_script.js' );
 	}
 
 	// стили виджета
-	function add_downloader_widget_style() {
+	function add_my_widget_style() {
 		// фильтр чтобы можно было отключить стили
 		if( ! apply_filters( 'show_my_widget_style', true, $this->id_base ) )
 			return;
@@ -166,17 +166,17 @@ class Downloader_Widget extends WP_Widget {
 // конец класса Downloader_Widget
 
 // регистрация Downloader_Widget в WordPress
-function register_Downloader_Widget() {
+function register_downloader_widget() {
 	register_widget( 'Downloader_Widget' );
 }
-add_action( 'widgets_init', 'register_Downloader_Widget' );
+add_action( 'widgets_init', 'register_downloader_widget' );
 //
 // Подключение стилей и скриптов
 
 function enqueue_universal_style() {
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
   wp_enqueue_style( 'universal-theme', get_template_directory_uri() . '/assets/css/universal-theme.css', 'style', time() );
-	wp_enqueue_style( 'Roboto-Slab', 'https://fonts/googleapis.com/css2?family=Roboto+Slab:wght@700&display=swap');
+	wp_enqueue_style( 'Roboto-Slab', 'https://fonts/googleapis.com/css2?family=Roboto+Slab:widht@700&display=swap');
 
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_universal_style' );

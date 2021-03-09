@@ -121,7 +121,11 @@
       ?>
         </ul>
   <!-- ./article-list -->
-  <ul class="article-grid">
+  
+  <!-- /.article-grid -->
+    <!-- Подключение сайдбар -->
+  <div class="main-grid">
+    <ul class="article-grid">
   <?php 
     global $post;
 
@@ -238,9 +242,7 @@
     wp_reset_postdata();
 ?>    
   </ul>
-  <!-- /.article-grid -->
-    <!-- Подключение сайдбар -->
-    <?php get_sidebar(); ?>
+  <?php get_sidebar(); ?>
   </div>
 </div>
 <!-- container -->
