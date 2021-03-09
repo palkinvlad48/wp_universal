@@ -174,7 +174,11 @@
         <span class="tag">
         <?php $posttags = get_the_tags(); 
           if ($posttags) {
-            echo $posttags[0]->name . ' ';
+            if ( $posttags[0]->name === 'popular' ) {
+              echo 'популярное';
+            } else {
+              echo $posttags[0]->name . ' ';
+            }
           }
         ?>
         </span>
@@ -233,5 +237,10 @@
 }
     wp_reset_postdata();
 ?>    
-</ul>
-<!-- /.article-grid -->
+  </ul>
+  <!-- /.article-grid -->
+    <!-- Подключение сайдбар -->
+    <?php get_sidebar(); ?>
+  </div>
+</div>
+<!-- container -->
