@@ -123,7 +123,7 @@
   <!-- ./article-list -->
   
   <!-- /.article-grid -->
-    <!-- Подключение сайдбар -->
+    <!-- Подключение сайдбара -->
   <div class="main-grid">
     <ul class="article-grid">
   <?php 

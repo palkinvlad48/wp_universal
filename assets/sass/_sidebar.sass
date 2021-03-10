@@ -1,10 +1,11 @@
 .sidebar
   &-front-page
     width: 23%
-    &-social-wrapper
-      padding: 10px 30px 20px
+    margin-top: 30px
+    .widget
+      &-social-wrapper
+        padding: 10px 30px 20px
 .widget
-  margin-top: 30px
   background-color: #fff
   border-radius: 10px
   &-title
@@ -26,7 +27,7 @@
       &-title
         text-transform: none
         margin-top: 0
-        font-family: 'Roboto Slab'
+        font-family: Roboto Slab
         font-style: normal
         font-weight: bold
         font-size: 16px
@@ -55,7 +56,6 @@
     .description
       color: #C1F4F5
       font-size: 14px
-      font-weight: 400
       line-height: 20px
       margin: 0
   &-social
@@ -67,7 +67,29 @@
     &-icon
       margin-left: 8px
       margin-right: 8px
+
     .widget
       &-title
         text-align: center
         border: none
+      &-link
+        &-face
+          margin-right: 10px
+          //height: 40px
+          //background-image: url('../images/facebook.svg') no-repeat center
+  .tagcloud
+    display: flex
+    align-items: center
+    justify-content: flex-start
+    flex-wrap: wrap
+    padding: 25px
+    padding-bottom: 35px
+  .tag-cloud-link
+    margin-right: 10px
+    margin-bottom: 15px
+    line-height: 20px
+    color: #262D33
+    text-decoration: none
+    padding: 5px 15px
+    border: 1px solid #D9DADB
+    border-radius: 5px
