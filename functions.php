@@ -150,7 +150,7 @@ class Downloader_Widget extends WP_Widget {
 
 		$theme_url = get_stylesheet_directory_uri();
 
-		wp_enqueue_script('downloader_widget_script', $theme_url .'/downloader_widget_script.js' );
+	//	wp_enqueue_script('downloader_widget_script', $theme_url .'/downloader_widget_script.js' );
 	}
 
 	// стили виджета
@@ -202,7 +202,7 @@ class Social_Widget extends WP_Widget {
 
 		// скрипты/стили виджета, только если он активен
 		if ( is_active_widget( false, false, $this->id_base ) || is_customize_preview() ) {
-			add_action('wp_enqueue_scripts', array( $this, 'add_social_widget_scripts' ));
+		//	add_action('wp_enqueue_scripts', array( $this, 'add_social_widget_scripts' ));
 			add_action('wp_head', array( $this, 'add_social_widget_style' ) );
 		}
 	}
@@ -325,7 +325,7 @@ class Social_Widget extends WP_Widget {
 
 		$theme_url = get_stylesheet_directory_uri();
 
-		wp_enqueue_script('social_widget_script', $theme_url .'/social_widget_script.js' );
+	//	wp_enqueue_script('social_widget_script', $theme_url .'/social_widget_script.js' );
 	}
 
 	// стили виджета
@@ -349,7 +349,7 @@ function register_social_widget() {
 }
 add_action( 'widgets_init', 'register_social_widget' );
 //
-/* изменение настроек */
+/* изменение настроек - работает и без этого
 add_filter( 'widget_social_widget_args', 'edit_social_widget_args');
 
 function edit_social_widget_args($args) {
@@ -358,7 +358,7 @@ function edit_social_widget_args($args) {
 	$args['link_3'] = '';
 	$args['link_4'] = '';
 	return $args;
-}
+}*/
 
 /* изменение настроек облака тегов */
 add_filter( 'widget_tag_cloud_args', 'edit_widget_tag_cloud_args');

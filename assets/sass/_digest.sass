@@ -1,0 +1,84 @@
+a
+  text-decoration: none
+.category-name
+  font-weight: 900
+  font-size: 12px
+  line-height: 15px
+  text-transform: uppercase
+  color: #4592FF
+  text-decoration: none
+.favourites
+  display: flex
+  align-items: flex-start
+  justify-content: space-between
+  padding-bottom: 30px
+//.proba  border: 1px solid red
+.article-grid-excerpt,
+.date
+  margin-right: 10px
+  color: #000
+//.icon-heart
+//  fill: rgb(191,191,191)//#D9DADB
+.comments-counter
+  margin-right: 10px
+.digest
+  margin-top: 30px
+  list-style: none
+  padding: 0
+  margin: 0
+  background-color: #fff
+  border-radius: 10px
+  padding: 0 25px
+  text-decoration: none
+  &-wrapper
+    width: 74%
+
+  &-item
+    display: flex
+    align-items: center
+    padding: 25px 0
+
+    &:not(:last-child)
+      border-bottom: 1px solid gray//#D9DADB
+    &-permalink
+      text-decoration: none
+      flex-shrink: 0
+  &-thumb
+    width: 336px
+    height: 195px
+    object-fit: cover
+    margin-right: 25px
+  &-info
+    position: relative
+    width: 100%
+  &-title
+    font-family: 'Roboto Slab'
+    font-style: normal
+    font-weight: bold
+    font-size: 20px
+    line-height: 25px
+    color: #262D33 // #4B5157
+
+    margin-top: 15px
+    margin-bottom: 10px
+    max-width: 400px
+    text-decoration: none
+  &-excerpt
+    margin: 0 0 20px
+  &-footer
+    display: flex
+    align-items: center
+  &-date, &-likes, &-comments
+    margin-right: 11px
+    color: #939699
+    display: flex
+    align-items: center
+.bookmark
+  background-color: transparent
+  border: none
+  position: absolute
+  right: 0
+  top: 0
+  cursor: pointer
+  svg
+    fill: #BCBFC2

@@ -131,7 +131,8 @@
 
     $query = new WP_Query( [
       'posts_per_page' => 7,
-      'tag' => 'popular',
+      //'tag' => 'popular',
+      'category__not_in' => 27, // кроме id=27
     ]);
 
     if ( $query->have_posts() ) {
@@ -246,3 +247,97 @@
   </div>
 </div>
 <!-- container -->
+<?php 
+    global $post;
+
+    $query = new WP_Query( [
+      'posts_per_page' => 1,
+      'category_name' => 'investigation',
+    ]);
+
+    if ( $query->have_posts() ) {
+      while ( $query->have_posts() ) {
+        $query->the_post();
+  ?>
+  
+<section class="investigation" style="background: linear-gradient(0deg, rgba(64,48,61,0.35), 
+rgba(64,48,61,0.35)), url(<?php echo get_the_post_thumbnail_url(); ?>) no-repeat center center ">
+  <div class="container">
+    <h2 class="investigation-title"><?php the_title() ?></h2>
+    <a href="<?php echo get_the_permalink() ?>" class="more">Читать статью</a>
+<?php
+      }
+    }  else {
+      // Нет постов
+}
+    wp_reset_postdata();
+?>
+
+</div>
+</section>
+<section class="">
+  <div class="container">
+    <ul class="digest digest-wrapper">    
+<?php 
+    global $post;
+
+    $myposts = $posts = get_posts( [
+	          'numberposts' => 6,
+            //'offset' => 12,
+            //'category-name' => 'javascript, html, css, web-disign',
+            ]
+          );
+          // Есть ли посты
+          if ($myposts) {
+            foreach( $myposts as $post ) {
+              setup_postdata( $post );
+        ?>
+        <!-- выводим записи -->
+    <li class="post">
+      <a class="" href="<?php the_permalink(); ?>">
+        <div class="digest-item">
+          <img src="<?php echo get_the_post_thumbnail_url() ?>" alt="рисунок поста" class="digest-thumb">
+          <div class="">
+            <div class="favourites">
+              <span class="category-name" style="margin:0;color:<?php echo $color_tag; ?>">
+                <?php $posttags = get_the_tags(); 
+                  $color_tag = '#4592FF';
+                  if ($posttags) {
+                    if ( $posttags[0]->name === 'hotter' ) {
+                      $color_tag = 'red';
+                    } 
+                    if ( $posttags[0]->name === 'compilations' ) {
+                      $color_tag = '#AC8EE3';
+                    }
+                  }
+                ?>
+                <?php $category = get_the_category(); echo $category[0]->name; ?>
+              </span>
+              <img src="<?php echo get_template_directory_uri() . '/assets/images/bookmark.svg' ?>" alt="icon comment" class="icon bookmark-icon">
+            </div>
+            <h2 class="digest-title"><?php the_title() ?></h2>
+      
+            <div class="article-grid-excerpt"><?php the_excerpt(); ?></div>  
+            <div class="comments">
+              <span class="date"><?php the_time( 'j F' )?></span>
+              <img src="<?php echo get_template_directory_uri() . '/assets/images/comment.svg' ?>" alt="icon comment" class="icon comments-icon">
+              <span class="comments-counter"><?php comments_number('0', '1', '%'  )?></span>
+              <!-- likes -->
+              <img class="icon-heart" src="<?php echo get_template_directory_uri() . '/assets/images/heart_gray.svg' ?>" alt="icon likes" class="icon likes-icon">
+              <span class="comments-counter"><?php comments_number('0', '1', '%'  )?></span>
+            </div>
+          </div>
+        </div>
+      </a>
+    </li>
+
+          <?php
+          }
+        } else {
+    // Постов не найдено
+      }
+      wp_reset_postdata(); // сбрасываем $post
+    ?>
+  </ul>
+</div>
+</section>
