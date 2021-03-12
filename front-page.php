@@ -8,7 +8,7 @@
 
           $myposts = $posts = get_posts( [
 	          'numberposts' => 1,
-            'offset' => 20,
+            //'offset' => 27,
 	          'category-name' => 'javascript',
             ]
           );
@@ -117,7 +117,7 @@
           $myposts = $posts = get_posts( [
 	          'numberposts' => 4,
             //'offset' => 1,
-            'category-name' => 'html, css, javascript, web-design',
+            'category-name' => 'articles',
             ]
           );
           // Есть ли посты
@@ -151,7 +151,7 @@
 
     $query = new WP_Query( [
       'posts_per_page' => 7,
-      //'tag' => 'popular',
+      'tag' => 'popular',
       'category__not_in' => 27, // кроме id=27
     ]);
 
@@ -283,7 +283,7 @@
 <section class="investigation" style="background: linear-gradient(0deg, rgba(64,48,61,0.35), 
 rgba(64,48,61,0.35)), url(<?php echo get_the_post_thumbnail_url(); ?>) no-repeat center center ">
   <div class="container">
-    <h2 class="investigation-title"><?php the_title() ?></h2>
+    <h2 class="investigation-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...'); ?></h2>
     <a href="<?php echo get_the_permalink() ?>" class="more">Читать статью</a>
 <?php
       }
@@ -304,7 +304,7 @@ rgba(64,48,61,0.35)), url(<?php echo get_the_post_thumbnail_url(); ?>) no-repeat
     $myposts = $posts = get_posts( [
 	          'numberposts' => 6,
             //'offset' => 12,
-            'category-name' => 'popular',
+            'category-name' => 'news, opinions, hotter', //, collections',
             ]
           );
           // Есть ли посты
@@ -335,9 +335,10 @@ rgba(64,48,61,0.35)), url(<?php echo get_the_post_thumbnail_url(); ?>) no-repeat
               </span>
               <img src="<?php echo get_template_directory_uri() . '/assets/images/bookmark.svg' ?>" alt="icon comment" class="icon bookmark-icon">
             </div>
-            <h2 class="digest-title"><?php the_title() ?></h2>
+            <h2 class="digest-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...'); ?></h2>
       
-            <div class="article-grid-excerpt"><?php the_excerpt(); ?></div>  
+            <div class="article-grid-excerpt">
+              <?php echo mb_strimwidth(get_the_excerpt(), 0, 76, '...'); ?></div>  
             <div class="comments">
               <span class="date"><?php the_time( 'j F' )?></span>
               <img src="<?php echo get_template_directory_uri() . '/assets/images/comment.svg' ?>" alt="icon comment" class="icon comments-icon">

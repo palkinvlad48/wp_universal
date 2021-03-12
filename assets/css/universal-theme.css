@@ -787,6 +787,7 @@ body {
 }
 
 .widget {
+  margin-top: 30px;
   background-color: #fff;
   border-radius: 10px;
 }
