@@ -436,7 +436,7 @@ class Recent_Posts_Widget extends WP_Widget {
 			echo '</div';
 		}
 		echo $args['after_widget'];
-	 
+		}
 	}
 	/**
 	 * Админ-часть виджета
@@ -475,7 +475,7 @@ class Recent_Posts_Widget extends WP_Widget {
 	function update( $new_instance, $old_instance ) {
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
-		$instance['count'] = ( ! empty( $new_instance['count'] ) ) ? strip_tags( $new_instance['count'] ) : '';
+		$instance['count'] = ( ! empty( $new_instance['count'] ) ) ? strip_tags( $new_instance['count'] ) : '0';
 		
 		return $instance;
 	}

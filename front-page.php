@@ -364,10 +364,10 @@ rgba(64,48,61,0.35)), url(<?php echo get_the_post_thumbnail_url(); ?>) no-repeat
 </section>
 <!-- /.investigation -->
 <div class="container">
-  <div class="article-grid">
+  <div class="sidebar-front-page">
   
   </div>
   <!-- подключаем нижний сайдбар -->
-  <?php get_sidebar('home-bottom'); ?>
+  <?php echo get_sidebar('home-bottom'); ?>
 </div>
 <!-- /.container-->
