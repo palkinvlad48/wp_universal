@@ -1,8 +1,8 @@
+body
+  counter-reset: section
 .sidebar
-  margin-bottom: 60px
   &-front-page
     width: 23%
-    margin-top: 30px
     .widget
       &-social-wrapper
         padding: 10px 30px 20px
@@ -68,16 +68,47 @@
     &-icon
       margin-left: 8px
       margin-right: 8px
-
     .widget
       &-title
         text-align: center
         border: none
-      &-link
-        &-face
-          margin-right: 10px
-          //height: 40px
-          //background-image: url('../images/facebook.svg') no-repeat center
+  &-recent-posts
+    &-wrapper
+      padding: 0 25px 17px
+    a
+      display: flex
+      align-items: center
+      text-decoration: none
+      padding-top: 17px
+      padding-bottom: 17px
+      position: relative
+      &:not(:last-child)
+        border-bottom: 1px solid #D9DADB
+      &::before
+        position: absolute
+        right: 5px
+        color: #262D33
+        opacity: 0.08
+        font-size: 70px
+        line-height: 50px
+        font-family: "Lato Black", sans-serif
+        font-style: italic
+        counter-increment: section
+        content: counter(section)
+    img
+      width: 60px
+      height: 60px
+      margin-right: 10px
+    h4
+      font-size: 14px
+      line-height: 20px
+      color: #4B5157
+      margin-top: 0
+      margin-bottom: 3px
+    span
+      color: #939699
+      font-size: 12px
+      line-height: 15px
   .tagcloud
     display: flex
     align-items: center

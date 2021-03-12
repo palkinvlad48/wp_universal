@@ -8,8 +8,8 @@
 
           $myposts = $posts = get_posts( [
 	          'numberposts' => 1,
-            'offset' => 2,
-	          'category_name' => 'javascript',
+            'offset' => 20,
+	          'category-name' => 'javascript',
             ]
           );
           // Есть ли посты
@@ -31,7 +31,16 @@
         <!-- Например выводим заголовки постов -->
         <!--p><!-php the_title(); ?></p-->
         <div class="post-text">
-          <?php the_category(); ?>
+          <?php 
+            foreach (get_the_category() as $category) {
+              printf(
+                '<a href="%s" class="category-link %s">%s</a>', 
+                esc_url( get_category_link( $category )), // для безопасности
+                esc_html( $category -> slug ),
+                esc_html( $category -> name )
+              );
+            }
+          ?>
           <h2 class="post-title"><?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?></h2>
           <a href="<?php echo get_permalink(); ?>" class="more">Читать далее</a>
         </div>
@@ -51,7 +60,7 @@
 
           $myposts = $posts = get_posts( [
 	          'numberposts' => 4,
-            'offset' => 12,
+            'offset' => 21,
             'category-name' => 'javascript, html, css, web-disign',
             ]
           );
@@ -63,7 +72,18 @@
         <!-- выводим записи -->
         
           <li class="post">
-            <span class="category-name"><?php the_category(); ?></span>
+            <span class="category-name">
+            <?php 
+              foreach (get_the_category() as $category) {
+                printf(
+                  '<a href="%s" class="category-link %s">%s</a>', 
+                  esc_url( get_category_link( $category )), // для безопасности
+                  esc_html( $category -> slug ),
+                  esc_html( $category -> name )
+                );
+              }
+            ?>
+            </span>
             <a class="post-permalink" href="<?php echo get_the_permalink(); ?>
               <h4 class="post-title">
                 <?php 
@@ -97,7 +117,7 @@
           $myposts = $posts = get_posts( [
 	          'numberposts' => 4,
             //'offset' => 1,
-            'category_name' => 'html, css, javascript, web-design',
+            'category-name' => 'html, css, javascript, web-design',
             ]
           );
           // Есть ли посты
@@ -243,7 +263,7 @@
     wp_reset_postdata();
 ?>    
   </ul>
-  <?php get_sidebar(); ?>
+  <?php get_sidebar('home-top'); ?>
   </div>
 </div>
 <!-- container -->
@@ -284,7 +304,7 @@ rgba(64,48,61,0.35)), url(<?php echo get_the_post_thumbnail_url(); ?>) no-repeat
     $myposts = $posts = get_posts( [
 	          'numberposts' => 6,
             //'offset' => 12,
-            //'category-name' => 'javascript, html, css, web-disign',
+            'category-name' => 'popular',
             ]
           );
           // Есть ли посты
@@ -341,3 +361,12 @@ rgba(64,48,61,0.35)), url(<?php echo get_the_post_thumbnail_url(); ?>) no-repeat
   </ul>
 </div>
 </section>
+<!-- /.investigation -->
+<div class="container">
+  <div class="article-grid">
+  
+  </div>
+  <!-- подключаем нижний сайдбар -->
+  <?php get_sidebar('home-bottom'); ?>
+</div>
+<!-- /.container-->
