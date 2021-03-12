@@ -241,22 +241,22 @@ class Social_Widget extends WP_Widget {
 		}
 		if ( ! empty( $link_Facebook ) ) {
 			//echo '<a target="_blank" class="" href="' . $link . '"><a>';
-			echo '<a target="_blank" class="widget-social.widget-link-face" href="' . $link_Facebook . 
+			echo '<a target="_blank" class="widget-social" href="' . $link_Facebook . 
 			'"><img class="widget-link-icon" src="' . get_template_directory_uri() . 
 			'/assets/images/facebook.svg" alt="icon facebook"></a>';
 		}
 		if ( ! empty( $link_Twitter ) ) {
-			echo '<a target="_blank" class="widget-social.widget-link-tw" href="' . $link_Twitter . 
+			echo '<a target="_blank" class="widget-social" href="' . $link_Twitter . 
 			'"><img class="widget-social-icon" src="' . get_template_directory_uri() . 
 			'/assets/images/twitter.svg" alt="icon twitter"></a>';
 		}
 		if ( ! empty( $link_Youtube ) ) {
-			echo '<a target="_blank" class="widget-social.widget-link-yout" href="' . $link_Youtube . 
+			echo '<a target="_blank" class="widget-social" href="' . $link_Youtube . 
 			'"><img class="widget-link-icon" src="' . get_template_directory_uri() . 
 			'/assets/images/youtube.svg" alt="icon youtube"></a>';
 		}
 		if ( ! empty( $link_Instagram ) ) {
-			echo '<a target="_blank" class="widget-social.widget-link-inst" href="' . $link_Instagram . 
+			echo '<a target="_blank" class="widget-social" href="' . $link_Instagram . 
 			'"><img class="widget-link-icon" src="' . get_template_directory_uri() . 
 			'/assets/images/instagram.svg" alt="icon instagram"></a>';
 		}
@@ -275,7 +275,7 @@ class Social_Widget extends WP_Widget {
 		$link_Facebook  = @ $instance['link_Facebook'] ?: 'https://facebook.ru/';
 		$link_Twitter  = @ $instance['link_Twitter'] ?: 'https://twitter.ru/';
 		$link_Youtube  = @ $instance['link_Youtube'] ?: 'https://youtube.ru/';
-		$link_Instagram  = @ $instance['link_Instagram'] ?: 'http://instagram.ru/';/**/
+		$link_Instagram  = @ $instance['link_Instagram'] ?: 'https://instagram.ru/';/**/
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Заголовок:' ); ?></label> 
@@ -381,7 +381,7 @@ class Recent_Posts_Widget extends WP_Widget {
 		parent::__construct(
 			'recent_posts_widget', // ID виджета, если не указать (оставить ''), то ID будет равен названию класса в нижнем регистре: recent_posts_widget
 			'Недавно опубликовано',
-			array( 'description' => 'Последние посты', 'classname' => 'widget-recent_posts', )
+			array( 'description' => 'Последние посты', 'classname' => 'widget-recent-posts', )
 		);
 
 		// скрипты/стили виджета, только если он активен
@@ -398,17 +398,17 @@ class Recent_Posts_Widget extends WP_Widget {
 	 * @param array $instance сохраненные данные из настроек
 	*/ 
 	function widget( $args, $instance ) {
-		$title = $instance['title']; //apply_filters( 'widget_title', $instance['title'] );
+		$title = $instance['title']; 
 		$count = $instance['count'];
 
 		echo $args['before_widget'];
-		
+		echo '<div class="widget-recent-posts-wrapper">';
 		if ( ! empty( $count ) ) {
 			if ( ! empty( $title ) ) {
 				echo $args['before_title'] . $title . $args['after_title'];
 			}
 			//echo '<div class="widget-social-wrapper">';
-			echo '<div class="widget-recent-posts-wrapper">';
+			
 			global $post;
 			$postlist = get_posts( [
 				'numberposts' => $count,  
@@ -429,14 +429,15 @@ class Recent_Posts_Widget extends WP_Widget {
 					</span>
 				</div>
 			</a>
+			
 			<?php 
 			}
 			wp_reset_postdata();
 			echo '</div';
 		}
 		echo $args['after_widget'];
+	 
 	}
-
 	/**
 	 * Админ-часть виджета
 	 * Recent_Posts_Widget
@@ -487,7 +488,7 @@ class Recent_Posts_Widget extends WP_Widget {
 
 		$theme_url = get_stylesheet_directory_uri();
 
-	//	wp_enqueue_script('recent_posts_widget_script', $theme_url .'/recent_posts_widget_script.js' );
+		wp_enqueue_script('recent_posts_widget_script', $theme_url . '/recent_posts_widget_script.js' );
 	}
 
 	// стили виджета
@@ -510,7 +511,8 @@ function register_recent_posts_widget() {
 	register_widget( 'Recent_Posts_Widget' );
 }
 add_action( 'widgets_init', 'register_recent_posts_widget' );
-/**/
+/* ??? */
+
 /* изменение настроек облака тегов */
 add_filter( 'widget_tag_cloud_args', 'edit_widget_tag_cloud_args');
 
