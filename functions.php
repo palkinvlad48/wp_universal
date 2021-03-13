@@ -412,16 +412,18 @@ class Recent_Posts_Widget extends WP_Widget {
 			global $post;
 			$postlist = get_posts( [
 				'numberposts' => $count,  
+			//	'category-name' => 'news',
 			]);
-				//array( 'post-per-page ??? ' => 10, 'order' => 'ASC', 'orderby' => 'title' ));
-			if ($postlist ){
+			//	array( 'post-per-page' => $count, 'order' => 'ASC', 'orderby' => 'title' ));
+			if ($postlist ) {
 				foreach ( $postlist as $post) {
 					setup_postdata($post);
 			?>
+			
 			<a class="recent-post-link" href="<?php get_the_permalink(); ?>">
-				<img class="recent-post-thumb" src="<?php echo get_the_post_thumbonail_url( null, 'thumbnail' ); ?>" alt="">
+				<img class="recent-post" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="">
 				<div class="recent-post-info">	
-					<h4 class="recent-post-title"><?php echo mb_strimwidth(get_the_title(), 0, 35, '...'); ?></h4>	
+					<h4 class="recent-post-title"><?php echo mb_strimwidth(get_the_title(), 0, 52, '...'); ?></h4>	
 					<span class="recent-post-time">
 						<?php $time_diff = human_time_diff( get_post_time('U'), current_time('timestamp')); 
 							echo "$time_diff назад"; // Опубликовано
@@ -433,7 +435,7 @@ class Recent_Posts_Widget extends WP_Widget {
 			<?php 
 			}
 			wp_reset_postdata();
-			echo '</div';
+			echo '<p style="text-align: center; font-weight: 700;margin-bottom:0;">Read more</p></div';
 		}
 		echo $args['after_widget'];
 		}

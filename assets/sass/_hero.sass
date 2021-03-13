@@ -58,6 +58,9 @@
       width: 45px
       height: 45px
       border-radius: 50%
+      &-text
+        position: relative
+        z-index: 2
       &-title
         font-size: 40px
         line-height: 50px
@@ -67,9 +70,6 @@
         margin-top: 20px
         margin-bottom: 50px
         max-width: 590px
-      &-text
-        position: relative
-        z-index: 2
 
   .right
     flex-basis: 25%
@@ -120,6 +120,9 @@
   background-position: center right 20px
   &:visited, &:focus, &:hover
     color: #fff
+.category-name
+  display: block
+  padding-bottom: 10px
 .category-link
   color: #4592ff
   text-transform: uppercase
@@ -129,9 +132,13 @@
   text-decoration: none
   &:visited
     color: #4592ff
-  &.web-design
+  &.web-disign
     color: #ffa34d
   &.javascript
     color: #6e99ae
   &.html
     color: #ac8ee3
+  &.css
+    color: #3DC47E
+  &.hotter
+    color: red

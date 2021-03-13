@@ -8,8 +8,8 @@
 
           $myposts = $posts = get_posts( [
 	          'numberposts' => 1,
-            //'offset' => 27,
-	          'category-name' => 'javascript',
+            'offset' => 25,
+	          'category-name' => 'javascript, css, html web-design',
             ]
           );
           // Есть ли посты
@@ -60,7 +60,7 @@
 
           $myposts = $posts = get_posts( [
 	          'numberposts' => 4,
-            'offset' => 21,
+            'offset' => 26,
             'category-name' => 'javascript, html, css, web-disign',
             ]
           );
@@ -72,7 +72,7 @@
         <!-- выводим записи -->
         
           <li class="post">
-            <span class="category-name">
+            <div class="category-name">
             <?php 
               foreach (get_the_category() as $category) {
                 printf(
@@ -83,7 +83,7 @@
                 );
               }
             ?>
-            </span>
+            </div>
             <a class="post-permalink" href="<?php echo get_the_permalink(); ?>
               <h4 class="post-title">
                 <?php 
@@ -116,7 +116,7 @@
 
           $myposts = $posts = get_posts( [
 	          'numberposts' => 4,
-            //'offset' => 1,
+            'offset' => 21, // N
             'category-name' => 'articles',
             ]
           );
@@ -151,7 +151,7 @@
 
     $query = new WP_Query( [
       'posts_per_page' => 7,
-      'tag' => 'popular',
+      'tag' => 'popular', // N
       'category__not_in' => 27, // кроме id=27
     ]);
 
@@ -168,9 +168,20 @@
     <li class="article-grid-item article-grid-item-1">
       <a href="<?php the_permalink(); ?>" class="article-grid-permalink">
         <img class="article-grid-thumb" src="<?php echo get_the_post_thumbnail_url();?>"  alt="Рисунок поста">
-        <span class="category-name"><?php 
+        <span class="category-name">
+        <?php 
+            foreach (get_the_category() as $category) {
+              printf(
+                '<a href="%s" class="category-link %s">%s</a>', 
+                esc_url( get_category_link( $category )), // для безопасности
+                esc_html( $category -> slug ),
+                esc_html( $category -> name )
+              );
+            }
+          ?>
+        <!--php 
           $category = get_the_category(); echo $category[0]->name; ?>
-        </span>
+        </span-->
         <h4 class="article-grid-title"><?php echo get_the_title(); ?></h4>
         <div class="article-grid-excerpt"><?php the_excerpt(); ?></div>
         <div class="article-grid-info">
@@ -207,7 +218,8 @@
           }
         ?>
         </span>
-        <span class="category-name"><?php $category = get_the_category(); echo $category[0]->name; ?>
+        <span class="category-name">
+          <?php $category = get_the_category(); echo $category[0]->name; ?>
         </span>
         <h4 class="article-grid-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...'); ?></h4>
         <div class="article-grid-info">
@@ -266,7 +278,8 @@
   <?php get_sidebar('home-top'); ?>
   </div>
 </div>
-<!-- container -->
+<!-- /container -->
+
 <?php 
     global $post;
 
@@ -295,16 +308,17 @@ rgba(64,48,61,0.35)), url(<?php echo get_the_post_thumbnail_url(); ?>) no-repeat
 
 </div>
 </section>
-<section class="">
+<!--section class=""-->
   <div class="container">
-    <ul class="digest digest-wrapper">    
+    <div class="main-digest">
+      <ul class="digest digest-wrapper">    
 <?php 
     global $post;
 
     $myposts = $posts = get_posts( [
 	          'numberposts' => 6,
-            //'offset' => 12,
-            'category-name' => 'news, opinions, hotter', //, collections',
+            'offset' => 7,
+            'category-name' => 'hotter', //'articles, opinions, hotter, compilations', //, collections',
             ]
           );
           // Есть ли посты
@@ -337,8 +351,7 @@ rgba(64,48,61,0.35)), url(<?php echo get_the_post_thumbnail_url(); ?>) no-repeat
             </div>
             <h2 class="digest-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...'); ?></h2>
       
-            <div class="article-grid-excerpt">
-              <?php echo mb_strimwidth(get_the_excerpt(), 0, 76, '...'); ?></div>  
+            <div class="article-grid-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 76, '...'); ?></div>  
             <div class="comments">
               <span class="date"><?php the_time( 'j F' )?></span>
               <img src="<?php echo get_template_directory_uri() . '/assets/images/comment.svg' ?>" alt="icon comment" class="icon comments-icon">
@@ -351,23 +364,25 @@ rgba(64,48,61,0.35)), url(<?php echo get_the_post_thumbnail_url(); ?>) no-repeat
         </div>
       </a>
     </li>
-
-          <?php
+    <?php
           }
         } else {
     // Постов не найдено
       }
       wp_reset_postdata(); // сбрасываем $post
     ?>
-  </ul>
-</div>
-</section>
-<!-- /.investigation -->
-<div class="container">
-  <div class="sidebar-front-page">
-  
-  </div>
+  </ul> 
   <!-- подключаем нижний сайдбар -->
   <?php echo get_sidebar('home-bottom'); ?>
+</div>
+<!--/section-->
+<!-- /.investigation -->
+<div class="container">
+  <!--div class="sidebar-front-page"-->
+  
+  
+ 
+  
+  <!--/div-->
 </div>
 <!-- /.container-->

@@ -215,6 +215,11 @@ body {
   border-radius: 50%;
 }
 
+.front-page-header .left .avatar-text {
+  position: relative;
+  z-index: 2;
+}
+
 .front-page-header .left .avatar-title {
   font-size: 40px;
   line-height: 50px;
@@ -224,11 +229,6 @@ body {
   margin-top: 20px;
   margin-bottom: 50px;
   max-width: 590px;
-}
-
-.front-page-header .left .avatar-text {
-  position: relative;
-  z-index: 2;
 }
 
 .front-page-header .right {
@@ -304,6 +304,11 @@ body {
   color: #fff;
 }
 
+.category-name {
+  display: block;
+  padding-bottom: 10px;
+}
+
 .category-link {
   color: #4592ff;
   text-transform: uppercase;
@@ -317,7 +322,7 @@ body {
   color: #4592ff;
 }
 
-.category-link.web-design {
+.category-link.web-disign {
   color: #ffa34d;
 }
 
@@ -327,6 +332,14 @@ body {
 
 .category-link.html {
   color: #ac8ee3;
+}
+
+.category-link.css {
+  color: #3DC47E;
+}
+
+.category-link.hotter {
+  color: red;
 }
 
 .article-list {
@@ -611,7 +624,7 @@ body {
 
 .article-grid-item-2 .category-name {
   margin-top: auto;
-  color: #E7D9FF;
+  color: orange;
   font-family: 'Lato Black', sans-serif;
   font-size: 12px;
   line-height: 15px;
@@ -786,8 +799,11 @@ body {
   padding: 10px 30px 20px;
 }
 
-.widget {
+#primary .widget {
   margin-top: 30px;
+}
+
+.widget {
   background-color: #fff;
   border-radius: 10px;
 }
@@ -985,6 +1001,24 @@ a {
   text-decoration: none;
 }
 
+.main-digest {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding-top: 30px;
+  padding-bottom: 30px;
+}
+
+.widget {
+  margin-top: 0px;
+}
+
 .category-name {
   font-weight: 900;
   font-size: 12px;
@@ -1040,16 +1074,7 @@ a {
       -ms-flex-align: center;
           align-items: center;
   padding: 25px 0;
-}
-
-.digest-item:not(:last-child) {
-  border-bottom: 1px solid gray;
-}
-
-.digest-item-permalink {
-  text-decoration: none;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
+  border-bottom: 1px solid #cfcfcf;
 }
 
 .digest-thumb {

@@ -1,5 +1,13 @@
 a
   text-decoration: none
+.main-digest 
+  display: flex
+  justify-content: space-between
+  align-items: flex-start
+  padding-top: 30px
+  padding-bottom: 30px
+.widget
+  margin-top: 0px // my
 .category-name
   font-weight: 900
   font-size: 12px
@@ -37,9 +45,9 @@ a
     display: flex
     align-items: center
     padding: 25px 0
-
-    &:not(:last-child)
-      border-bottom: 1px solid gray//#D9DADB
+    border-bottom: 1px solid #cfcfcf
+  //  &::not(:last-child) ??? no worked
+  //    border-bottom: 1px solid #cfcfcf//#D9DADB
     &-permalink
       text-decoration: none
       flex-shrink: 0
