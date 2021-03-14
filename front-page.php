@@ -8,8 +8,9 @@
 
           $myposts = $posts = get_posts( [
 	          'numberposts' => 1,
-            'offset' => 25,
-	          'category-name' => 'javascript, css, html web-design',
+          //  'offset' => 29,
+           // 'tag' => 'javascript, html, css, web-disign',
+	          'category-name' => 'javascript, html, css, web-disign',
             ]
           );
           // Есть ли посты
@@ -59,8 +60,9 @@
           global $post;
 
           $myposts = $posts = get_posts( [
-	          'numberposts' => 4,
-            'offset' => 26,
+	          'numberposts' => 5,
+            'offset' => 1,
+          //  'tag' => 'javascript, html, css, web-disign',
             'category-name' => 'javascript, html, css, web-disign',
             ]
           );
@@ -116,8 +118,8 @@
 
           $myposts = $posts = get_posts( [
 	          'numberposts' => 4,
-            'offset' => 21, // N
-            'category-name' => 'articles',
+           // 'offset' => 23, // N
+            'category-name' => 'articles, news', //articles, news
             ]
           );
           // Есть ли посты
@@ -212,8 +214,10 @@
           if ($posttags) {
             if ( $posttags[0]->name === 'popular' ) {
               echo 'популярное';
-            } else {
-              echo $posttags[0]->name . ' ';
+            } 
+            //if ( $posttags[0]->name === 'articles' ) { // ???              echo 'статьи';            }
+            else {              
+              echo $posttags[0]->name . ' ';            
             }
           }
         ?>
@@ -317,8 +321,8 @@ rgba(64,48,61,0.35)), url(<?php echo get_the_post_thumbnail_url(); ?>) no-repeat
 
     $myposts = $posts = get_posts( [
 	          'numberposts' => 6,
-            'offset' => 7,
-            'category-name' => 'hotter', //'articles, opinions, hotter, compilations', //, collections',
+          //  'offset' => 9,
+            'category-name' => 'opinions, hotter, compilations, articles', //'articles, opinions, hotter, compilations', //, collections',
             ]
           );
           // Есть ли посты
