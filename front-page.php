@@ -8,7 +8,7 @@
 
           $myposts = $posts = get_posts( [
 	          'numberposts' => 1,
-          //  'offset' => 29,
+          //  'offset' => 1,
            // 'tag' => 'javascript, html, css, web-disign',
 	          'category-name' => 'javascript, html, css, web-disign',
             ]
@@ -61,9 +61,10 @@
 
           $myposts = $posts = get_posts( [
 	          'numberposts' => 5,
+          //  'tag' => 'javascript, html, css, web-design', // N
+          //  'category__not_in' => 14,?
             'offset' => 1,
-          //  'tag' => 'javascript, html, css, web-disign',
-            'category-name' => 'javascript, html, css, web-disign',
+            'category-name' => 'javascript, html, css, web-design',
             ]
           );
           // Есть ли посты
@@ -119,7 +120,7 @@
           $myposts = $posts = get_posts( [
 	          'numberposts' => 4,
            // 'offset' => 23, // N
-            'category-name' => 'articles, news', //articles, news
+            'category-name' => 'articles, news', 
             ]
           );
           // Есть ли посты
@@ -182,8 +183,8 @@
             }
           ?>
         <!--php 
-          $category = get_the_category(); echo $category[0]->name; ?>
-        </span-->
+          $category = get_the_category(); echo $category[0]->name; ?-->
+        </span>
         <h4 class="article-grid-title"><?php echo get_the_title(); ?></h4>
         <div class="article-grid-excerpt"><?php the_excerpt(); ?></div>
         <div class="article-grid-info">
@@ -210,17 +211,7 @@
       <img src="<?php echo get_the_post_thumbnail_url() ?>" alt="Фоновый рисунок" class="article-grid-thumb">
       <a href="<?php the_permalink(); ?>" class="article-grid-permalink">
         <span class="tag">
-        <?php $posttags = get_the_tags(); 
-          if ($posttags) {
-            if ( $posttags[0]->name === 'popular' ) {
-              echo 'популярное';
-            } 
-            //if ( $posttags[0]->name === 'articles' ) { // ???              echo 'статьи';            }
-            else {              
-              echo $posttags[0]->name . ' ';            
-            }
-          }
-        ?>
+          <?php $posttags = get_the_tags(); echo $posttags[0]->name . ' '; ?>
         </span>
         <span class="category-name">
           <?php $category = get_the_category(); echo $category[0]->name; ?>
@@ -298,7 +289,7 @@
   ?>
   
 <section class="investigation" style="background: linear-gradient(0deg, rgba(64,48,61,0.35), 
-rgba(64,48,61,0.35)), url(<?php echo get_the_post_thumbnail_url(); ?>) no-repeat center center ">
+  rgba(64,48,61,0.35)), url(<?php echo get_the_post_thumbnail_url(); ?>) no-repeat center center ">
   <div class="container">
     <h2 class="investigation-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...'); ?></h2>
     <a href="<?php echo get_the_permalink() ?>" class="more">Читать статью</a>
@@ -322,7 +313,7 @@ rgba(64,48,61,0.35)), url(<?php echo get_the_post_thumbnail_url(); ?>) no-repeat
     $myposts = $posts = get_posts( [
 	          'numberposts' => 6,
           //  'offset' => 9,
-            'category-name' => 'opinions, hotter, compilations, articles', //'articles, opinions, hotter, compilations', //, collections',
+            'category-name' => 'opinions, hot, compilations, articles', //'articles, opinions, hotter, compilations', //, collections',
             ]
           );
           // Есть ли посты
@@ -337,11 +328,22 @@ rgba(64,48,61,0.35)), url(<?php echo get_the_post_thumbnail_url(); ?>) no-repeat
           <img src="<?php echo get_the_post_thumbnail_url() ?>" alt="рисунок поста" class="digest-thumb">
           <div class="">
             <div class="favourites">
-              <span class="category-name" style="margin:0;color:<?php echo $color_tag; ?>">
-                <?php $posttags = get_the_tags(); 
+              <!--span class="category-name"-->
+           <?php 
+              foreach (get_the_category() as $category) {
+                printf(
+                '<span class="category-name %s">%s</span>', 
+                //esc_url( get_category_link( $category )), // для безопасности
+                esc_html( $category -> slug ),
+                esc_html( $category -> name )
+              );
+            }
+          ?>
+              <!--span class="category-name" style="margin:0;color:<php echo $color_tag; ?>">
+                <php $posttags = get_the_tags(); 
                   $color_tag = '#4592FF';
                   if ($posttags) {
-                    if ( $posttags[0]->name === 'hotter' ) {
+                    if ( $posttags[0]->name === 'hot' ) {
                       $color_tag = 'red';
                     } 
                     if ( $posttags[0]->name === 'compilations' ) {
@@ -349,8 +351,8 @@ rgba(64,48,61,0.35)), url(<?php echo get_the_post_thumbnail_url(); ?>) no-repeat
                     }
                   }
                 ?>
-                <?php $category = get_the_category(); echo $category[0]->name; ?>
-              </span>
+                <php $category = get_the_category(); echo $category[0]->name; ?-->
+              <!--/span-->
               <img src="<?php echo get_template_directory_uri() . '/assets/images/bookmark.svg' ?>" alt="icon comment" class="icon bookmark-icon">
             </div>
             <h2 class="digest-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...'); ?></h2>

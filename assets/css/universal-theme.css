@@ -322,12 +322,12 @@ body {
   color: #4592ff;
 }
 
-.category-link.web-disign {
+.category-link.web-design {
   color: #ffa34d;
 }
 
 .category-link.javascript {
-  color: #6e99ae;
+  color: blue;
 }
 
 .category-link.html {
@@ -338,8 +338,12 @@ body {
   color: #3DC47E;
 }
 
-.category-link.hotter {
+.category-link.hot {
   color: red;
+}
+
+.category-link.opinions {
+  color: #3BBDC4;
 }
 
 .article-list {
@@ -1026,6 +1030,30 @@ a {
   text-transform: uppercase;
   color: #4592FF;
   text-decoration: none;
+}
+
+.category-name.web-design {
+  color: #ffa34d;
+}
+
+.category-name.javascript {
+  color: blue;
+}
+
+.category-name.html {
+  color: #ac8ee3;
+}
+
+.category-name.css {
+  color: #3DC47E;
+}
+
+.category-name.hot {
+  color: red;
+}
+
+.category-name.opinions {
+  color: #3BBDC4;
 }
 
 .favourites {

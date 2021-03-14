@@ -412,7 +412,7 @@ class Recent_Posts_Widget extends WP_Widget {
 			global $post;
 			$postlist = get_posts( [
 				'numberposts' => $count,  
-				'offset' => 2,
+			//	'offset' => 2,
 				'category-name' => 'news',
 			]);
 			//	array( 'post-per-page' => $count, 'order' => 'ASC', 'orderby' => 'title' ));
