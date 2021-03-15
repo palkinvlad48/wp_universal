@@ -8,7 +8,7 @@
 
           $myposts = $posts = get_posts( [
 	          'numberposts' => 1,
-          //  'offset' => 1,
+            'offset' => 26,
            // 'tag' => 'javascript, html, css, web-disign',
 	          'category-name' => 'javascript, html, css, web-disign',
             ]
@@ -56,24 +56,22 @@
       <div class="right">
         <h3 class="recommend">Рекомендуем</h3>
         <ul class="posts-list">
-        <?php
-          global $post;
+      <?php
+        global $post;
+          
+        $query = new WP_Query( [
+      	  'posts_per_page' => 5,
+          'tag' => 'javascript, html, css, web-design',
+        // 'paged'          => get_query_var( 'page' ),
+        ] );
 
-          $myposts = $posts = get_posts( [
-	          'numberposts' => 5,
-          //  'tag' => 'javascript, html, css, web-design', // N
-          //  'category__not_in' => 14,?
-            'offset' => 1,
-            'category-name' => 'javascript, html, css, web-design',
-            ]
-          );
-          // Есть ли посты
-          if ($myposts) {
-            foreach( $myposts as $post ) {
-              setup_postdata( $post );
-        ?>
+  // Обрабатываем полученные в запросе продукты, если они есть
+        if ( $query->have_posts() ) {
+
+	        while ( $query->have_posts() ) {
+		        $query->the_post();
+      ?>  
         <!-- выводим записи -->
-        
           <li class="post">
             <div class="category-name">
             <?php 
@@ -115,19 +113,21 @@
   <ul class="article-list">
   <!-- Выводим записи -->
     <?php
-          global $post;
+      global $post;
+          
+      $query = new WP_Query( [
+      	'posts_per_page' => 4,
+        'tag' => 'articles, news',
+      // 'paged'          => get_query_var( 'page' ),
+      ] );
 
-          $myposts = $posts = get_posts( [
-	          'numberposts' => 4,
-           // 'offset' => 23, // N
-            'category-name' => 'articles, news', 
-            ]
-          );
-          // Есть ли посты
-          if ($myposts) {
-            foreach( $myposts as $post ) {
-              setup_postdata( $post );
-        ?>
+  // Обрабатываем полученные в запросе продукты, если они есть
+  if ( $query->have_posts() ) {
+
+	  while ( $query->have_posts() ) {
+		  $query->the_post();
+      ?>
+    
         <!-- выводим записи -->      
           <li class="article-item">
             <a class="article-permalink" href="<?php echo get_the_permalink(); ?>">
@@ -280,7 +280,7 @@
 
     $query = new WP_Query( [
       'posts_per_page' => 1,
-      'category_name' => 'investigation',
+      'category_name' => 'investigations',
     ]);
 
     if ( $query->have_posts() ) {
@@ -309,19 +309,17 @@
       <ul class="digest digest-wrapper">    
 <?php 
     global $post;
+    $query = new WP_Query( [
+      'posts_per_page' => 6,
+      'category_name' => 'opinions, hot, compilations',
+    ]);
 
-    $myposts = $posts = get_posts( [
-	          'numberposts' => 6,
-          //  'offset' => 9,
-            'category-name' => 'opinions, hot, compilations, articles', //'articles, opinions, hotter, compilations', //, collections',
-            ]
-          );
-          // Есть ли посты
-          if ($myposts) {
-            foreach( $myposts as $post ) {
-              setup_postdata( $post );
-        ?>
-        <!-- выводим записи -->
+    if ( $query->have_posts() ) {
+      while ( $query->have_posts() ) {
+        $query->the_post();
+  ?>
+         
+    <!-- выводим записи -->
     <li class="post">
       <a class="" href="<?php the_permalink(); ?>">
         <div class="digest-item">
@@ -339,7 +337,7 @@
               );
             }
           ?>
-              <!--span class="category-name" style="margin:0;color:<php echo $color_tag; ?>">
+              <!--span class="category_name" style="margin:0;color:<php echo $color_tag; ?>">
                 <php $posttags = get_the_tags(); 
                   $color_tag = '#4592FF';
                   if ($posttags) {
@@ -355,9 +353,9 @@
               <!--/span-->
               <img src="<?php echo get_template_directory_uri() . '/assets/images/bookmark.svg' ?>" alt="icon comment" class="icon bookmark-icon">
             </div>
-            <h2 class="digest-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...'); ?></h2>
+            <h2 class="digest-title"><?php echo mb_strimwidth(get_the_title(), 0, 40, '...'); ?></h2>
       
-            <div class="article-grid-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 76, '...'); ?></div>  
+            <div class="article-grid-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 190, '...'); ?></div>  
             <div class="comments">
               <span class="date"><?php the_time( 'j F' )?></span>
               <img src="<?php echo get_template_directory_uri() . '/assets/images/comment.svg' ?>" alt="icon comment" class="icon comments-icon">

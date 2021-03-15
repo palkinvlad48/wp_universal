@@ -408,8 +408,8 @@ class Recent_Posts_Widget extends WP_Widget {
 				echo $args['before_title'] . $title . $args['after_title'];
 			}
 			//echo '<div class="widget-social-wrapper">';
-			
 			global $post;
+
 			$postlist = get_posts( [
 				'numberposts' => $count,  
 			//	'offset' => 2,
@@ -424,7 +424,7 @@ class Recent_Posts_Widget extends WP_Widget {
 			<a class="recent-post-link" href="<?php get_the_permalink(); ?>">
 				<img class="recent-post" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="">
 				<div class="recent-post-info">	
-					<h4 class="recent-post-title"><?php echo mb_strimwidth(get_the_title(), 0, 52, '...'); ?></h4>	
+					<h4 class="recent-post-title"><?php echo mb_strimwidth(get_the_title(), 0, 42, '...'); ?></h4>	
 					<span class="recent-post-time">
 						<?php $time_diff = human_time_diff( get_post_time('U'), current_time('timestamp')); 
 							echo "$time_diff назад"; // Опубликовано

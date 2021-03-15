@@ -754,7 +754,7 @@ body {
 
 .article-grid-item-default .article-grid-excerpt {
   margin-top: 0;
-  margin-bottom: auto;
+  margin-bottom: 20px;
 }
 
 .comments {
@@ -988,6 +988,7 @@ body {
   padding: 50px 0 55px;
   text-align: center;
   margin-bottom: 60px;
+  background-size: cover;
 }
 
 .investigation-title {
@@ -1066,7 +1067,7 @@ a {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  padding-bottom: 30px;
+  padding-bottom: 0px;
 }
 
 .article-grid-excerpt,
@@ -1102,6 +1103,9 @@ a {
       -ms-flex-align: center;
           align-items: center;
   padding: 25px 0;
+  border-bottom: 1px solid #cfcfcf;
+}
+.digest-item:not(:last-child) { /* не работает ???*/
   border-bottom: 1px solid #cfcfcf;
 }
 
