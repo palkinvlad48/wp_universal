@@ -258,7 +258,7 @@
               </use>
             </svg>
             <span class="comments-counter"><?php comments_number('0', '1', '%'  )?></span>
-            <svg fill="#BCBFC2" class="icon likes-icon">
+            <svg fill="#BCBFC2" width="15" height="15" class="icon likes-icon">
               <use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#heart">
               </use>
             </svg>

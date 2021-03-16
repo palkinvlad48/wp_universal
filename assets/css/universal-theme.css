@@ -100,14 +100,8 @@ body {
 
 .form-button {
   position: absolute;
-  right: 20px;
-  top: 4px;
-  width: 25px;
-  height: 25px;
-  background-image: url("../images/search.svg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center;
+  right: 0px;
+  top: -3px;
   background-color: transparent;
   border: none;
   cursor: pointer;
@@ -805,11 +799,23 @@ body {
 
 #primary .widget {
   margin-top: 30px;
+  position: relative;
+}
+
+.widget-icon-file {
+  position: absolute;
+  top: -20px;
+  right: 20px;
+  z-index: 1;
 }
 
 .widget {
   background-color: #fff;
   border-radius: 10px;
+  /*&-desc
+    width: 200px
+    padding: 0 //-bottom: 20px
+    border-bottom: 1px solid #D9DADB*/
 }
 
 .widget-title {
@@ -827,13 +833,13 @@ body {
   border-radius: 10px;
   color: #ffffff;
   padding: 25px;
-  padding-bottom: 55px;
+  height: 180px;
   position: relative;
 }
 
 .widget-downloader .widget-title {
   text-transform: none;
-  margin-top: 0;
+  margin: 0;
   font-family: Roboto Slab;
   font-style: normal;
   font-weight: bold;
@@ -844,19 +850,8 @@ body {
 }
 
 .widget-downloader .widget-link {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  text-align: center;
-  padding-top: 12px;
-  padding-bottom: 13px;
-  border-top: 1px solid rgba(255, 255, 255, 0.75);
-  color: #ffffff;
-  text-decoration: none;
-  font-family: "Lato Black", sans-serif;
-  font-size: 14px;
-  line-height: 20px;
+  width: 100%;
+  height: 40px;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -866,6 +861,14 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  text-align: center;
+  padding: 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.75);
+  color: #ffffff;
+  text-decoration: none;
+  font-family: "Lato Black", sans-serif;
+  font-size: 14px;
+  line-height: 20px;
 }
 
 .widget-downloader .widget-link-icon {
@@ -1407,4 +1410,138 @@ a {
   color: #4A51AA;
   font-weight: 600;
   text-transform: uppercase;
+}
+
+.footer {
+  padding: 60px 0 55px;
+  background-color: #fff;
+}
+
+.footer-menu {
+  border-top: 3px solid #000;
+  padding-right: 20px;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+}
+
+.footer-menu:nth-child(1) {
+  border-top: 3px solid #FF4F52;
+}
+
+.footer-menu:nth-child(2) {
+  border-top: 3px solid #AC8EE3;
+}
+
+.footer-menu:nth-child(3) {
+  border-top: 3px solid #4592FF;
+}
+
+.footer-menu:nth-child(4) {
+  border-top: 3px solid #FFA34D;
+}
+
+.footer-menu:nth-child(5) {
+  border-top: 3px solid #3DC47E;
+}
+
+.footer-menu:nth-child(6) {
+  border-top: 3px solid #6E99AE;
+}
+
+.footer-menu-bar {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  padding-bottom: 60px;
+}
+
+.footer-menu-title {
+  font-family: "Lato Black", sans-serif;
+  font-weight: 900;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 25px;
+  margin-top: 30px;
+}
+
+.footer-menu ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.footer-menu ul a {
+  text-decoration: none;
+  display: inline-block;
+  color: #4B5157;
+  margin: 0 0 15px;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.footer-info {
+  padding: 30px 0;
+  border-top: 1px solid #D9DADB;
+  border-bottom: 1px solid #D9DADB;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.footer-info ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.footer-info ul a {
+  color: #262D33;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.footer-nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  font-family: "Lato Black", sans-serif;
+}
+
+.footer-nav-wrapper {
+  margin-right: auto;
+}
+
+.footer-text {
+  max-width: 750px;
+}
+
+.footer-text-wrapper {
+  color: #939699;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  padding-top: 40px;
+}
+
+.footer-text-wrapper p {
+  margin-top: 0;
+  margin-bottom: 25px;
 }

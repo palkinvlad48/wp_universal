@@ -66,6 +66,17 @@ function universal_theme_widgets_init() {
 			'after_title'		=> '</h2>',
 		)
 	 );
+	 register_sidebar( 
+		array(
+			'name'          => esc_html__('Меню в подвале', 'universal-theme'),
+			'id'						=> 'sidebar-footer-bottom', 
+			'description'		=> esc_html__('Добавьте меню сюда', 'universal-theme'),
+			'before_widget'	=> '<section id="%1$s" class="footer-menu %2$s">',
+			'after_widget'	=> '</section>',
+			'before_title'	=> '<h2 class="footer-menu-title">',
+			'after_title'		=> '</h2>',
+		)
+	 );
 }
 add_action('widgets_init', 'universal_theme_widgets_init');
 
@@ -103,18 +114,20 @@ class Downloader_Widget extends WP_Widget {
 		$link = $instance['link'];
 
 		echo $args['before_widget'];
+		echo '<svg fill="#96E2E3" width="54" heigth="72" class="icon widget-icon-file">
+        		<use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#file"></use>
+      		</svg>';
 		if ( ! empty( $title ) ) {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
 		if ( ! empty( $description ) ) {
-			echo '<p>' . $description . '</p>';
+			echo '<p class="widget-desc">' . $description . '</p>';
 		}
 		if ( ! empty( $link ) ) {
 			echo '<a target="_blank" class="widget-link" href="' . $link . '" download>
-			<svg fill="#96E2E3" width="56" heigth="72" class="icon widget-link-icon">
-        <use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#file"></use>
-      </svg>
-			Скачать</a>';
+			<svg fill="#96E2E3" width="20" heigth="20" class="icon widget-link-icon">
+        <use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#download"></use>
+      </svg>Скачать</a>';
 		}
 		echo $args['after_widget'];
 	}
