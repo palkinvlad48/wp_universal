@@ -332,7 +332,12 @@
   rgba(64,48,61,0.35)), url(<?php echo get_the_post_thumbnail_url(); ?>) no-repeat center center ">
   <div class="container">
     <h2 class="investigation-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...'); ?></h2>
-    <a href="<?php echo get_the_permalink() ?>" class="more">Читать статью</a>
+    <a href="<?php echo get_the_permalink() ?>" class="more">
+      <svg fill="#fff" width="20" height="20" class="icon icon-arrow">
+        <use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#arrow">
+        </use>
+      </svg>Читать статью
+    </a>
   <?php
       }
     }  else {
@@ -506,7 +511,12 @@
           <p class="career-post-excerpt">
             Каверзные и не очень вопросы, которых боятся новички, когда идут на собеседование
           </p>
-          <a href="#" class="more">Читать далее</a>
+          <a href="#" class="more">
+            <svg fill="#fff" width="20" height="20" class="icon icon-arrow">
+              <use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#arrow">
+              </use>
+            </svg>Читать далее
+          </a>
         </div>
         <!-- /.career-post -->
         <div class="other-posts">
@@ -530,4 +540,4 @@
   <!-- /.container -->
 </div>
 <!-- /.special -->
-<?php wp_footer(); ?>
+<?php get_footer(); ?>
