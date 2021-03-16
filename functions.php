@@ -32,9 +32,12 @@ add_action( 'after_setup_theme', 'universal_theme_setup');
 // подключение стилей
 function enqueue_universal_style() {
 	wp_enqueue_style( 'style', get_stylesheet_uri() );
-  wp_enqueue_style( 'universal-theme', get_template_directory_uri() . '/assets/css/universal-theme.css', 'style', time() );
+  
+	wp_enqueue_style( 'swiper-slider', get_template_directory_uri() . '/assets/css/swiper-bundle.css', 'style', time() );
+	wp_enqueue_style( 'universal-theme', get_template_directory_uri() . '/assets/css/universal-theme.css', 'style', time() );
 	wp_enqueue_style( 'Roboto-Slab', 'https://fonts/googleapis.com/css2?family=Roboto+Slab:widht@700&display=swap');
-
+	wp_enqueue_script( 'swiper', get_template_directory_uri() . '/assets/js/swiper-bundle.js', null, time(), true );
+	wp_enqueue_script( 'scripts', get_template_directory_uri() . '/assets/js/scripts.js', 'swiper', time(), true );
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_universal_style' );
 
@@ -108,7 +111,10 @@ class Downloader_Widget extends WP_Widget {
 		}
 		if ( ! empty( $link ) ) {
 			echo '<a target="_blank" class="widget-link" href="' . $link . '" download>
-			<img class="widget-link-icon" src="' . get_template_directory_uri() . '/assets/images/download.svg">Скачать</a>';
+			<svg fill="#96E2E3" width="56" heigth="72" class="icon widget-link-icon">
+        <use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#file"></use>
+      </svg>
+			Скачать</a>';
 		}
 		echo $args['after_widget'];
 	}
@@ -227,13 +233,11 @@ class Social_Widget extends WP_Widget {
 	 */
 	function widget( $args, $instance ) {
 		$title = $instance['title']; //apply_filters( 'widget_title', $instance['title'] );
-		//$description = $instance['description'];
-		
 		$link_Facebook = $instance['link_Facebook'];
 	  $link_Twitter = $instance['link_Twitter'];
 		$link_Youtube = $instance['link_Youtube'];
 		$link_Instagram = $instance['link_Instagram'];
-/**/
+
 		echo $args['before_widget'];
 		if ( ! empty( $title ) ) {
 			echo $args['before_title'] . $title . $args['after_title'] . 
@@ -271,11 +275,11 @@ class Social_Widget extends WP_Widget {
 	 */
 	function form( $instance ) {
 		$title = @ $instance['title'] ?: 'Социальные сети';
-		//$description  = @ $instance['description'] ?: 'Ссылки';
-		$link_Facebook  = @ $instance['link_Facebook'] ?: 'https://facebook.ru/';
-		$link_Twitter  = @ $instance['link_Twitter'] ?: 'https://twitter.ru/';
-		$link_Youtube  = @ $instance['link_Youtube'] ?: 'https://youtube.ru/';
-		$link_Instagram  = @ $instance['link_Instagram'] ?: 'https://instagram.ru/';/**/
+		
+		$link_Facebook = @ $instance['link_Facebook'] ?: 'https://www.facebook.com/';
+		$link_Twitter = @ $instance['link_Twitter'] ?: 'https://www.twitter.com/';
+		$link_Youtube = @ $instance['link_Youtube'] ?: 'https://www.youtube.com/';
+		$link_Instagram = @ $instance['link_Instagram'] ?: 'https://www.instagram.com/';
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Заголовок:' ); ?></label> 
@@ -412,7 +416,7 @@ class Recent_Posts_Widget extends WP_Widget {
 
 			$postlist = get_posts( [
 				'numberposts' => $count,  
-			//	'offset' => 2,
+				'offset' => 2,
 				'category-name' => 'news',
 			]);
 			//	array( 'post-per-page' => $count, 'order' => 'ASC', 'orderby' => 'title' ));
@@ -422,7 +426,7 @@ class Recent_Posts_Widget extends WP_Widget {
 			?>
 			
 			<a class="recent-post-link" href="<?php get_the_permalink(); ?>">
-				<img class="recent-post" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="">
+				<img class="recent-post-thumb" src="<?php echo get_the_post_thumbnail_url(); ?>" alt="">
 				<div class="recent-post-info">	
 					<h4 class="recent-post-title"><?php echo mb_strimwidth(get_the_title(), 0, 42, '...'); ?></h4>	
 					<span class="recent-post-time">
