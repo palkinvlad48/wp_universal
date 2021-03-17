@@ -138,7 +138,7 @@
                 echo get_the_post_thumbnail_url( null, 'thumb'); 
               } 
               else {
-                echo get_template_directory_url() . 'assets/images/img-default.png';
+               // echo get_template_directory_url() . 'assets/images/img-default.png';
               } 
             ?>" alt="">
             <!-- ja -->
@@ -153,7 +153,7 @@
         </ul>
   <!-- ./article-list -->
   
-  <!-- /.article-grid -->
+  <!-- article-grid -->
     <!-- Подключение сайдбара -->
   <div class="main-grid">
     <ul class="article-grid">
@@ -347,11 +347,10 @@
   ?>
   </div>
 </section>
-<!--section class=""-->
-<div>
+<!--/section class=""-->
 <div class="container">
-<div class="favourites"
-  <div class="main-digest">
+  <div class="favourites"
+    <div class="main-digest">
       <ul class="digest digest-wrapper">    
   <?php 
     global $post;
@@ -395,31 +394,31 @@
             );
           }
         ?>
-          <h2 class="digest-title"><?php echo mb_strimwidth(get_the_title(), 0, 40, '...'); ?></h2>
+            <h2 class="digest-title"><?php echo mb_strimwidth(get_the_title(), 0, 40, '...'); ?></h2>
       
-          <div class="article-grid-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 190, '...'); ?></div>  
-          <div class="comments">
-            <span class="date"><?php the_time( 'j F' )?></span>
-            <svg width="15" height="14" class="icon comments-icon">
-              <use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#comment">
-              </use>
-            </svg>
-            <span class="comments-counter"><?php comments_number('0', '1', '%'  )?></span>
-            <!-- likes -->
-            <svg width="15" height="15" fill="#BCBFC2" class="icon likes-icon">
-              <use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#heart">
-              </use>
-            </svg>
-            
-            <span class="comments-counter"><?php comments_number('0', '1', '%'  )?></span>
+            <div class="article-grid-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 190, '...'); ?></div>  
+            <div class="comments">
+              <span class="date"><?php the_time( 'j F' )?></span>
+              <svg width="15" height="14" class="icon comments-icon">
+                <use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#comment">
+                </use>
+              </svg>
+              <span class="comments-counter"><?php comments_number('0', '1', '%'  )?></span>
+              <!-- likes -->
+              <svg width="15" height="15" fill="#BCBFC2" class="icon likes-icon">
+                <use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#heart">
+                </use>
+              </svg>
+
+              <span class="comments-counter"><?php comments_number('0', '1', '%'  )?></span>
+            </div>
           </div>
-        </div>
         
-        <!--/a-->
-      </li>
+        <!-- info -->
+        </li>
     <?php
-          }
-        } else {
+        }
+      } else {
     // Постов не найдено
       }
       wp_reset_postdata(); // сбрасываем $post
@@ -494,9 +493,9 @@
           </a>
         </div>
         <!-- /.photo-report-content -->
-        <?php
-          }
-        } else {
+      <?php
+        }
+      } else {
     // Постов не найдено
       }
       wp_reset_postdata(); // сбрасываем $post
@@ -506,38 +505,94 @@
       <!-- /.photo-report -->
       <div class="other">
         <div class="career-post">
-          <a href="#" class="career-post-link">Карьера</a>
-          <h3 class="career-post-title">Вопросы на собеседовании для джуна</h3>
-          <p class="career-post-excerpt">
-            Каверзные и не очень вопросы, которых боятся новички, когда идут на собеседование
-          </p>
-          <a href="#" class="more">
+  <?php 
+    global $post;
+
+    $query = new WP_Query( [
+      'posts_per_page' => 1,
+      'tag' => 'career, working', // N
+      //'category__not_in' => 27, // кроме id=27
+    ]);
+
+    if ( $query->have_posts() ) {
+
+      while ( $query->have_posts() ) {
+        $query->the_post();
+       // выводим пост
+  ?>
+  <?php 
+        foreach (get_the_category() as $category) {
+          printf(
+          '<a href="%s" class="category-link">%s</a>', 
+          esc_url( get_category_link( $category )), // для безопасности
+        //  esc_html( $category -> slug ),
+          esc_html( $category -> name )
+        );
+      }
+   ?>
+          <!--a href="<?php the_permalink(); ?>" class="career-post-link">
+          
+          </a-->
+          <h3 class="career-post-title"><?php the_title(); ?></h3>
+          <p class="career-post-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 60, '...'); ?></p>
+          <a href="<?php echo get_permalink(); ?>" class="more">
             <svg fill="#fff" width="20" height="20" class="icon icon-arrow">
               <use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#arrow">
               </use>
             </svg>Читать далее
           </a>
+
+        <?php   
+      }
+    } else {
+      // Нет постов
+    }
+    wp_reset_postdata();
+  ?>    
+      
+      
         </div>
         <!-- /.career-post -->
         <div class="other-posts">
-          <a href="#" class="other-post other-post-default">
-            <h4 class="other-post-title">Самые крутые функции в...</h4>
-            <p class="other-post-excerpt">Эти несколько упражнений помогут сохранить зрение. Можно делать их даже если...</p>
-            <span class="other-post-date">3 декабря 2020</span>
+          <!--ul class="article-grid"-->
+  <?php 
+    global $post;
+
+    $query = new WP_Query( [
+      'posts_per_page' => 2,
+      'tag' => 'news', // N
+      //'category__not_in' => 27, // кроме id=27
+    ]);
+
+    if ( $query->have_posts() ) {
+
+      while ( $query->have_posts() ) {
+        $query->the_post();
+       // выводим пост
+  ?>
+
+          <a href="<?php the_permalink(); ?>" class="other-post other-post-default">
+            <h4 class="other-post-title"><?php echo mb_strimwidth(get_the_title(), 0, 40, '...'); ?></h4>
+            <p class="other-post-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 60, '...'); ?></p>
+            <span class="other-post-date"><?php the_time( 'j F Y' )?></span> 
+      <!-- если the_date, то дата выводится только в 1-м посте  -->
           </a>
-          <a href="#" class="other-post other-post-default">
-            <h4 class="other-post-title">Новые возможности язык...</h4>
-            <p class="other-post-excerpt">Какие плагины помогут быстро создать галерею, выпадающие списки или окна</p>
-            <span class="other-post-date">3 декабря 2020</span>
-          </a>
-        </div>
+          
+  <?php   
+      }
+    } else {
+      // Нет постов
+    }
+    wp_reset_postdata();
+  ?>    
+        </ul>
+      </div>
         <!-- /.other-posts -->
       </div>
       <!-- /.other -->
     </div>
-    <!-- /.special-grid -->
-  </div>
-  <!-- /.container -->
+    <!-- /container .special-grid -->
+    <!--?php get_sidebar('home-top'); ?-->
 </div>
 <!-- /.special -->
 <?php get_footer(); ?>

@@ -42,11 +42,11 @@
     <div class="container">
     <div class="footer-text-wrapper">
       <?php dynamic_sidebar( 'sidebar-footer-text' ); ?>
-      <span class="footer-copyright"><?php echo date('Y') . '&nbsp;&copy;&nbsp;' . get_bloginfo('name'); ?></span>
+      <span class="footer-copyright"><?php echo '&copy;&nbsp;' . get_bloginfo('name') . '&nbsp;' . date('Y'); ?></span>
     </div>
     <!-- /footer-text-wrapper -->
   </div>
-  <!-- /container -->
+  <!-- /container article-grid-item article-grid-item-default -->
   </footer>
   <?php wp_footer(); ?> 
 </body>
