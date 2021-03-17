@@ -523,7 +523,7 @@
   <?php 
         foreach (get_the_category() as $category) {
           printf(
-          '<a href="%s" class="category-link">%s</a>', 
+          '<a href="%s" class="career-post-link">%s</a>', 
           esc_url( get_category_link( $category )), // для безопасности
         //  esc_html( $category -> slug ),
           esc_html( $category -> name )
