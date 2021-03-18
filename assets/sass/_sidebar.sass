@@ -5,15 +5,7 @@ body
     width: 23%
     .widget
       &-social-wrapper
-        padding: 10px 30px 20px
-#primary .widget
-  margin-top: 30px // my
-  position: relative
-.widget-icon-file
-  position: absolute
-  top: -20px
-  right: 20px
-  z-index: 1
+        padding: 10px 10px 20px
 .widget
   background-color: #fff
   border-radius: 10px
@@ -25,23 +17,17 @@ body
     font-family: "Lato Black", sans-serif
     margin: 0
     text-transform: uppercase
-  /*&-desc
-    width: 200px
-    padding: 0 //-bottom: 20px
-    border-bottom: 1px solid #D9DADB*/
   &-downloader
-    background: #3BBDC4 //url('../images/file.svg') no-repeat top 22px right 24px
+    background: #3BBDC4 url('../images/file.svg') no-repeat top 22px right 24px
     border-radius: 10px
     color: #ffffff
     padding: 25px
-    height: 180px
-    //height: 40px
-    //padding-bottom: 55px
+    padding-bottom: 55px
     position: relative
     .widget
       &-title
         text-transform: none
-        margin: 0 //top
+        margin-top: 0
         font-family: Roboto Slab
         font-style: normal
         font-weight: bold
@@ -49,23 +35,24 @@ body
         line-height: 25px
         border: none
         padding: 0
-        
       &-link
-        //position: relative // absolute
-        width: 100%
+        position: absolute
         height: 40px
-        display: inline-flex
-        align-items: center
-        justify-content: center
+        top: 130px//bottom: 0
+        left: 0
+        right: 0
         text-align: center
-        padding: 0 //12px 0 13px
+        padding-top: 12px
+        padding-bottom: 3px
         border-top: 1px solid rgba(#fff, 0.75)
         color: #ffffff
         text-decoration: none
         font-family: "Lato Black", sans-serif
         font-size: 14px
         line-height: 20px
-        //border: 1px solid red
+        display: inline-flex
+        align-items: center
+        justify-content: center
         &-icon
           margin-right: 10px
     .description
@@ -73,14 +60,15 @@ body
       font-size: 14px
       line-height: 20px
       margin: 0
+    //  border-bottom: 1px solid red
   &-social
     &-wrapper
       display: flex
       align-items: center
-      justify-content: center
+      justify-content: space-around//center
       flex-wrap: wrap
-    &-icon
-      margin-left: 8px
+    &-icon:not(:last-child)
+      //margin-left: 8px
       margin-right: 8px
     .widget
       &-title
@@ -89,7 +77,7 @@ body
   &-recent-posts
     &-wrapper
       padding: 0 25px 17px
-    a //&-link
+    a
       display: flex
       align-items: center
       text-decoration: none
@@ -139,3 +127,22 @@ body
     padding: 5px 15px
     border: 1px solid #D9DADB
     border-radius: 5px
+@media screen and ( max-width: 1200px )
+  .sidebar
+    &-front-page
+      width: 30%
+    &-social
+      &-wrapper
+        align-items: center
+      //  padding: 0 50px
+@media screen and ( max-width: 960px )
+  .widget
+    &-downloader
+      p
+        margin-bottom: 40px
+      &-widget
+        &-link
+          top: 80px
+  .sidebar
+    &-front-page
+      width: 100%

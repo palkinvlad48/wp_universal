@@ -414,7 +414,7 @@
             </div>
           </div>
         
-        <!-- info -->
+        <!-- /digest-info -->
         </li>
     <?php
         }

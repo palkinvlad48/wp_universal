@@ -14,13 +14,13 @@
 <header class="header">
   <div class="container">
     <div class="header-wrapper">
-      <!--img src="?php echo get_template_directory_url . 'assets/images/logo.png'?" alt="logo"-->
+      <!--img src="<php echo get_template_directory_url() . '/assets/images/logo.png'?>" alt="logo"-->
       <?php 
       if ( has_custom_logo() ) {
         // логотип есть, выводим его
         the_custom_logo();
       } else {
-        echo 'Universal';
+        echo 'Universal'; //get_template_directory_url() . '/assets/images/logo.png';//
       }
       ?>
     
@@ -32,8 +32,13 @@
           'menu_class'      => 'header-menu',
           'echo'            => true,
         ] );
+        echo get_search_form(); 
       ?>
-      <?php get_search_form(); ?>
+      <a href="#" class="header-menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </a>
     </div>
   </div>
 </header>

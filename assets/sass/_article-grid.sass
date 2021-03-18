@@ -7,7 +7,7 @@
 .article
   &-grid
     width: 74%
-    margin: 30px 0
+    margin: 0 0 30px
     padding: 0
     list-style: none
     display: grid
@@ -19,8 +19,6 @@
       text-decoration: none
       color: #262D33
       &:hover
-        color: #262D33
-      &:visited
         color: #262D33
     &-item
       border-radius: 10px
@@ -38,15 +36,8 @@
           text-transform: uppercase
           color: #6E99AE
         .article-grid
-          &-thumb
-            position: absolute
-            right: 0
-            top: 0
-            width: 50%
-            height: 100%
-            object-fit: contain
           &-title
-            width: 250px
+            width: 90%
             font-family: Roboto Slab
             font-style: normal
             font-weight: bold
@@ -55,10 +46,10 @@
             margin-top: 20px
             margin-bottom: 25px
           &-excerpt
-            width: 50%
             font-size: 14px
             line-height: 20px
-            margin-bottom: 20px // 40px
+            width: 60%
+            margin-bottom: 40px
           &-info
             position: absolute
             bottom: 0
@@ -126,7 +117,6 @@
             line-height: 25px
             margin-top: 23px
             margin-bottom: 27px
-            text-transform: uppercase
             color: #ffffff
         .tag
           padding: 5px 12px
@@ -138,7 +128,7 @@
           text-transform: capitalize
         .category-name
           margin-top: auto
-          color: orange//#E7D9FF
+          color: #E7D9FF
           font-family: 'Lato Black', sans-serif
           font-size: 12px
           line-height: 15px
@@ -155,22 +145,17 @@
           &-avatar
             width: 45px
             height: 45px
-            margin-right: 10px
             border-radius: 50%
           &-name
             flex-basis: 100%
-            color: #fff
         .date, .comments, .likes
-          opacity: 0.6
+          opacity: 0.4
           display: flex
           align-items: center
-          color: #fff
           &:not(:last-child)
             margin-right: 7px
           &-counter
             margin-left: 5px
-        .likes-icon
-          margin-left: 5px
       &-3
         grid-area: 2 / 1 / 4 / 2
         .article
@@ -181,7 +166,7 @@
           &-grid
             &-title
               padding: 15px 25px 35px
-              font-family: 'Roboto Slab'
+              font-family: Roboto Slab
               font-style: normal
               font-weight: bold
               font-size: 16px
@@ -214,16 +199,6 @@
 .comments
   display: flex
   align-items: center
-  &-comment
-    width: 14px
-    height: 14px
-  &-likes
-    width: 14px
-    height: 14px
-    background-image: url('../images/heart.svg')
-    background-repeat: no-repeat
-    background-position: center
-    background-size: cover
   &-icon
     fill: #BCBFC2
   &-counter
@@ -231,3 +206,24 @@
     font-size: 12px
     line-height: 15px
     margin-left: 5px
+@media screen and ( max-width: 1200px )
+  .article
+    &-grid
+      grid-template-columns: repeat(auto-fit, minmax(40%, 1fr))
+@media screen and ( max-width: 1024px )
+  .article
+    &-grid
+      width: 65%
+      grid-template-columns: 1fr
+      grid-template-rows: repeat(3, minmax(300px, max-content))
+      &-item
+        grid-area: auto
+        .tag
+          margin-bottom: 30px
+@media screen and ( max-width: 960px )
+  .main
+    &-grid
+      flex-wrap: wrap
+  .article
+    &-grid
+      width: 100%

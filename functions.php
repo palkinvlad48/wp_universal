@@ -36,7 +36,11 @@ function enqueue_universal_style() {
 	wp_enqueue_style( 'swiper-slider', get_template_directory_uri() . '/assets/css/swiper-bundle.css', 'style', time() );
 	wp_enqueue_style( 'universal-theme', get_template_directory_uri() . '/assets/css/universal-theme.css', 'style', time() );
 	wp_enqueue_style( 'Roboto-Slab', 'https://fonts/googleapis.com/css2?family=Roboto+Slab:widht@700&display=swap');
+	wp_deregister_script( 'jquery-core');
+	wp_register_script( 'jquery-core', get_template_directory_uri() . '/assets/js/jquery-3.5.1.min.js', null, time() );//code.jquery.com/
+	wp_enqueue_script( 'jquery-core' );
 	wp_enqueue_script( 'swiper', get_template_directory_uri() . '/assets/js/swiper-bundle.js', null, time(), true );
+
 	wp_enqueue_script( 'scripts', get_template_directory_uri() . '/assets/js/scripts.js', 'swiper', time(), true );
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_universal_style' );
@@ -125,9 +129,7 @@ class Downloader_Widget extends WP_Widget {
 		$link = $instance['link'];
 
 		echo $args['before_widget'];
-		echo '<svg fill="#96E2E3" width="54" heigth="72" class="icon widget-icon-file">
-        		<use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#file"></use>
-      		</svg>';
+		
 		if ( ! empty( $title ) ) {
 			echo $args['before_title'] . $title . $args['after_title'];
 		}
@@ -137,8 +139,10 @@ class Downloader_Widget extends WP_Widget {
 		if ( ! empty( $link ) ) {
 			echo '<a target="_blank" class="widget-link" href="' . $link . '" download>
 			<svg fill="#96E2E3" width="20" heigth="20" class="icon widget-link-icon">
-        <use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#download"></use>
-      </svg>Скачать</a>';
+        <use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#download">
+				</use>
+      </svg>	
+			Скачать</a>';
 		}
 		echo $args['after_widget'];
 	}
@@ -435,12 +439,12 @@ class Recent_Posts_Widget extends WP_Widget {
 			if ( ! empty( $title ) ) {
 				echo $args['before_title'] . $title . $args['after_title'];
 			}
-			//echo '<div class="widget-social-wrapper">';
+			//echo '<div class="wrapper-link">';
 			global $post;
 
 			$postlist = get_posts( [
 				'numberposts' => $count,  
-				'offset' => 2,
+			//	'offset' => 4,
 				'category-name' => 'news',
 			]);
 			//	array( 'post-per-page' => $count, 'order' => 'ASC', 'orderby' => 'title' ));
@@ -460,11 +464,12 @@ class Recent_Posts_Widget extends WP_Widget {
 					</span>
 				</div>
 			</a>
-			
-			<?php 
+			<?php
+			 
 			}
 			wp_reset_postdata();
-			echo '<p style="text-align: center; font-weight: 700;margin-bottom:0;">Read more</p></div';
+			//echo '</div>';
+			echo '<p style="text-align: center; font-weight: 700; margin-bottom:10px;">Read more</p></div';
 		}
 		echo $args['after_widget'];
 		}
