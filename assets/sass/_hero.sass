@@ -4,7 +4,8 @@
   background-color: #262d33
   padding-top: 30px
   position: relative
-  height: 475px
+  height: 475px //auto
+  border: 1px soli yellow
   .hero
     display: flex
     overflow: hidden
@@ -58,19 +59,18 @@
       width: 45px
       height: 45px
       border-radius: 50%
-      &-text
-        position: relative
-        z-index: 2
+    .post
       &-title
         font-size: 40px
         line-height: 50px
-        min-height: 100px
-        color: #fff
+        color: #ffffff
         font-family: 'Roboto Slab', serif
         margin-top: 20px
         margin-bottom: 50px
         max-width: 590px
-
+      &-text
+        z-index: 2
+        position: relative
   .right
     flex-basis: 25%
     .recommend
@@ -84,8 +84,9 @@
       padding: 0
       margin: 0
       list-style: none
+      box-shadow: 0px 2px 5px rgba(#000, 0.3)
   .post
-    padding: 17px 25px 19px 25px
+    padding: 17px 25px 19px
     margin: 0
     min-height: 100px
     border-top: 1px solid #d9dad8
@@ -154,10 +155,19 @@
     .right
       flex-basis: 35%
 @media screen and ( max-width: 768px )
+  .front-page-header
+    margin-bottom: 200px //height: auto
   .hero
+    flex-direction: column
+    height: auto
+    .left
+      .post-text
+        margin-bottom: 170px
+    //  padding-bottom: 20px
     .right
-      flex-direction: column
-    .fron-page
-      &-header
-        height: auto
-        padding-bottom: 30px
+      flex-basis: 100%
+    //  order: 5
+      margin-top: 20px
+@media screen and ( max-width: 560px )
+  .front-page-header
+    margin-bottom: 320px

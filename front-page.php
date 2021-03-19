@@ -8,7 +8,7 @@
 
           $myposts = $posts = get_posts( [
 	          'numberposts' => 1,
-            'offset' => 26,
+            'offset' => 30,
            // 'tag' => 'javascript, html, css, web-disign',
 	          'category-name' => 'javascript, html, css, web-disign',
             ]
@@ -61,6 +61,7 @@
           
         $query = new WP_Query( [
       	  'posts_per_page' => 5,
+        //  'offset' => 31,
           'tag' => 'javascript, html, css, web-design',
         // 'paged'          => get_query_var( 'page' ),
         ] );
@@ -130,7 +131,7 @@
     
         <!-- выводим записи -->      
           <li class="article-item">
-            <a class="article-permalink" href="<?php echo get_the_permalink(); ?>">
+            <a class="article-permalink" href="<php echo get_the_permalink(); ?>">
              <h4 class="article-title"><?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?></h4>
             </a>
             <img width="65" height="65" src="<?php 
@@ -138,10 +139,11 @@
                 echo get_the_post_thumbnail_url( null, 'thumb'); 
               } 
               else {
+                echo 'Нет рисунка';
                // echo get_template_directory_url() . 'assets/images/img-default.png';
               } 
             ?>" alt="">
-            <!-- ja -->
+            
         </li>
           <?php
           }

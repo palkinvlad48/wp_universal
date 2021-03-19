@@ -6,15 +6,12 @@ if ( ! function_exists( 'universal_theme_setup' ) ) :
 	function universal_theme_setup() {
 		// добавление тэга title
 		add_theme_support( 'title-tag' );
-
 		// добавление миниатюр
 		add_theme_support( 'post-thumbnails', array( 'post' ) );
-
-
 		// добавление кастомного логотипа
 		add_theme_support( 'custom-logo', [
 			'width'		=> 163,
-			'flex-height' => true,
+			'flex-height' => true, // чтобы менялась
 			'header-text' => 'Universal',
 			'unlink-homepage-logo' => false, // с wp 5.5
 		]);

@@ -15,14 +15,14 @@
   <div class="container">
     <div class="header-wrapper">
       <!--img src="<php echo get_template_directory_url() . '/assets/images/logo.png'?>" alt="logo"-->
-      <?php 
+    <?php 
       if ( has_custom_logo() ) {
         // логотип есть, выводим его
         the_custom_logo();
       } else {
         echo 'Universal'; //get_template_directory_url() . '/assets/images/logo.png';//
       }
-      ?>
+    ?>
     
       <?php
         wp_nav_menu( [

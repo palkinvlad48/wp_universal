@@ -39,24 +39,38 @@
     font-size: 14px
     line-height: 20px
 @media screen and ( max-width: 1024px )
-  .widget-link
-    padding-bottom: 0
   .article
     &-list
       flex-wrap: wrap
+      margin-top: 200px
     &-item
       width: 50%
       padding: 25px
     &-permalink
       width: 60%
 @media screen and ( max-width: 768px )
-  .article
+ .article
     &-list
-      margin-top: 30px
+      margin-top: 740px
+      order: 1
+      height: auto
+      //margin-bottom: 50px
+      border: 1px solid blue
     &-item
       padding-top: 20px
       padding-bottom: 30px
+      width: 100%
 @media screen and ( max-width: 576px )
   .article
     &-item
       width: 100%
+    &-list
+      margin-top: 790px
+@media screen and ( max-width: 500px )
+  .article
+    &-list
+      margin-top: 840px
+@media screen and ( max-width: 485px )
+  .article
+    &-list
+      margin-top: 860px
