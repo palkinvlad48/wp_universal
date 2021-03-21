@@ -573,3 +573,8 @@ if ( function_exists( 'add_image_size') ) {
 	//add_image_size( 'front-page-thumb', 65, 999 ); // без ограничения по высоте
 	add_image_size( 'homepage-thumb', 65, 65, true ); // кадрирование картинки
 }
+
+// меняем стиль многоточия в открывках
+add_filter('excerpt_more', function($more){
+	return ' ...';
+});
