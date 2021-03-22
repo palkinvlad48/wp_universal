@@ -1928,9 +1928,11 @@ body {
   background-color: #fff;
 }
 
-.header-light .logo-name {
+.header-light .logo .logo-name {
   margin-left: 10px;
   color: #4592ff;
+  font-weight: 700;
+  text-decoration: none;
 }
 
 .header-light .menu-item a {

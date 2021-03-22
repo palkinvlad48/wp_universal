@@ -17,9 +17,11 @@
         if ( has_custom_logo() ) {
         // логотип есть, выводим его
           echo '<div class="logo">' . get_custom_logo() .  
-          '<span class="logo-name">' . get_bloginfo('name') . '</span></div>';
+          //'<span class="logo-name">' . get_bloginfo('name') . '</span></div>';
+         '<a href=' .  home_url() . ' class="logo-name">' . get_bloginfo( 'name' ) . '</a></div>';
+
         } else {
-          echo '<span class="logo-name">' . get_bloginfo('name') . '</span></div>'; 
+          echo '<a href=' .  home_url() . 'class="logo-name">' . get_bloginfo('name') . '</a>'; 
         }
     
         wp_nav_menu( [
