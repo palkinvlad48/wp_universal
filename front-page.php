@@ -436,30 +436,30 @@
 <div class="special">
   <div class="container special-grid">
     <div class="photo-report">
-  <?php 
-    global $post;
-    $query = new WP_Query( [
-      'posts_per_page' => 1,
-      'category_name' => 'photo-report',
-    ]);
+        <?php 
+          global $post;
+          $query = new WP_Query( [
+            'posts_per_page' => 1,
+            'category_name' => 'photo-report',
+          ]);
 
-    if ( $query->have_posts() ) {
-      while ( $query->have_posts() ) {
-        $query->the_post();
-  ?>
-      
+          if ( $query->have_posts() ) {
+            while ( $query->have_posts() ) {
+              $query->the_post();
+        ?>
       <!-- Slider main container -->
         <div class="swiper-container photo-report-slider">
           <!-- Additional required wrapper -->
           <div class="swiper-wrapper">
             <!-- Slides -->
-        <?php $images = get_attached_media( 'image' );  // image надо брать не из библиотеки, а извне //
-          foreach ($images as $image) {
-            echo '<div class="swiper-slide"><img src="';
-            print_r($image -> guid); 
-            echo '"></div>';
-          }
-        ?>      
+          <?php $images = get_attached_media( 'image' );  // image надо брать не из библиотеки, а извне //
+            $images = array_slice($images, -3, 3, true);
+            foreach ($images as $image) {
+              echo '<div class="swiper-slide"><img src="';
+              print_r($image -> guid); 
+              echo '"></div>';
+            }
+          ?>      
           </div>
           <div class="swiper-pagination"></div>
         </div>    

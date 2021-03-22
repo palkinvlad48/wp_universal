@@ -2191,6 +2191,13 @@ body {
   max-width: 700px;
 }
 
+.post-content p:first-child:first-letter {
+  color: #4592FF;
+  font-family: "Lato Black", sans-serif;
+  font-size: 100px;
+  line-height: 70px;
+}
+
 .post-content .has-drop-cap:not(:focus):first-letter {
   color: #4592FF;
   font-family: "Lato Black", sans-serif;
@@ -2281,4 +2288,16 @@ body {
   border: 1px solid #D9DADB;
   border-radius: 5px;
   margin-right: 10px;
+}
+
+.meks_ess {
+  max-width: 623px;
+}
+
+.meks_ess_share_label {
+  margin-top: 30px;
+  margin-bottom: 25px;
+  font-size: 25px;
+  line-height: 30px;
+  font-family: Roboto Slab;
 }

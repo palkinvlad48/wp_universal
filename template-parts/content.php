@@ -151,9 +151,11 @@
 		<?php 
     $tags_list = get_the_tag_list( '',  esc_html_x(', ', 'list item separator', 'universal-theme' ) ); 
     if ( $tags_list ) {
-      printf( '<span class="tags_links">' . esc_html__('%1$s', 'universal_theme' ) . '</span>',
+      printf( '<span class="tags-links">' . esc_html__('%1$s', 'universal_theme' ) . '</span>',
       $tags_list ); //
     }
+		// Поделиться в соцсетях
+		meks_ess_share();
     ?>
-	</footer><!-- .entry-footer -->
+	</footer><!-- .post-footer подвал поста -->
 </article><!-- #post-<php the_ID(); -->
