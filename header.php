@@ -8,19 +8,19 @@
   <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
-
 <?php wp_body_open(); ?>
-
-<header class="header">
-  <div class="container">
-    <div class="header-wrapper">
-      <!--img src="<php echo get_template_directory_url() . '/assets/images/logo.png'?>" alt="logo"-->
+  <header class="header">
+    <div class="container">
+      <div class="header-wrapper">
     <?php 
       if ( has_custom_logo() ) {
         // логотип есть, выводим его
-        the_custom_logo();
+        echo '<div class="logo">' . get_custom_logo() .  
+        '<span class="logo-name">' . get_bloginfo('name') . '</span></div>';
       } else {
-        echo 'Universal'; //get_template_directory_url() . '/assets/images/logo.png';//
+        echo '<span class="logo-name">' . get_bloginfo('name') . '</span>';
+        // вар-т: echo '<a href=' .  home_url() . ' class="logo-name">' . get_bloginfo( 'name' ) . '</a>';
+
       }
     ?>
     
