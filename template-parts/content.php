@@ -10,7 +10,7 @@
   	    echo get_template_directory_uri() . '/assets/images/default.png';
   	  }
   		?>
-    ); background-repeat: no-repeat; background-size: contain; background-position: center;">
+    ); background-repeat: no-repeat; background-size: cover; background-position: center;">
   <div class="container">
 		<div class="post-header-wrapper">
 			<div class="post-header-nav">
@@ -65,9 +65,12 @@
       	    </use>
       	  </svg>
       	</button>
+				
 			</div>
 			<!-- /.post-title-wrapper -->
-			<?php the_excerpt('excerpt_more') ?>	
+			<div class="post-excerpt">
+					<?php echo mb_strimwidth(get_the_excerpt(), 0, 200, '...'); ?>
+				</div>	
 			<div class="post-header-info">
         <span class="post-header-date">
 					<svg width="14" height="14" class="icon clock-icon">
@@ -124,8 +127,8 @@
 				the_content(
 					sprintf(
 						wp_kses(
-						/* translators: %s: Name of current post. Only visible to screen readers */
-							__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'universal-example' ),
+						/* translators: %s: Название текущего поста. Видно только для программ чтения с экрана */
+							__( 'Continue reading<span class="screen-reader-text"> "%s"</span>', 'universal-theme' ),
 							array(
 								'span' => array(
 								'class' => array(),

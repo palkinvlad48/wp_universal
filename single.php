@@ -17,7 +17,7 @@
 				comments_template();
 			endif;
 
-		endwhile; // End of the loop.
+		endwhile; // Конец цикла Wordpress
 		?>
 		</div>
 	</main>

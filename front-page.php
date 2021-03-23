@@ -43,7 +43,11 @@
             }
           ?>
           <h2 class="post-title"><?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?></h2>
-          <a href="<?php echo get_permalink(); ?>" class="more">Читать далее</a>
+          <a href="<?php echo get_permalink(); ?>" class="more">
+            <svg fill="#fff" width="20" height="20" class="icon icon-arrow">
+              <use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#arrow">
+              </use>
+            </svg>Читать далее</a>
         </div>
       <?php
           }
