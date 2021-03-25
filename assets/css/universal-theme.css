@@ -2354,6 +2354,7 @@ body {
   padding: 10px 20px;
   border: 1px solid #D9DADB;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 .comments-add-button:visited {
@@ -2391,6 +2392,7 @@ body {
   background-color: #fff;
   border: 1px solid #D9DADB;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 .comment-button-load::before {
@@ -2452,6 +2454,9 @@ body {
   margin-right: 15px;
   -ms-flex-negative: 0;
       flex-shrink: 0;
+  width: 75px;
+  height: 75px;
+  border-radius: 50%;
 }
 
 .comment-meta {
@@ -2578,4 +2583,110 @@ body {
 .comment-form-author, .comment-form-email, .comment-form-url,
 .comment-form-cookies-consent {
   display: none;
+}
+
+body {
+  background-color: #f3f3f3;
+}
+
+.java-widget {
+  border: none;
+  background-color: #f3f3f3;
+}
+
+.main-java {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: top;
+      -ms-flex-align: top;
+          align-items: top;
+}
+
+.java-author-avatar {
+  margin-right: 10px;
+}
+
+.java-author {
+  width: 100%;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.java-grid {
+  width: 74%;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: -ms-grid;
+  display: grid;
+  -ms-grid-columns: (minmax(30%, 1fr))[auto-fit];
+      grid-template-columns: repeat(auto-fit, minmax(30%, 1fr));
+  -ms-grid-rows: (minmax(200px, max-content))[2];
+      grid-template-rows: repeat(2, minmax(200px, -webkit-max-content));
+      grid-template-rows: repeat(2, minmax(200px, max-content));
+  grid-auto-rows: minmax(200px, -webkit-max-content);
+  grid-auto-rows: minmax(200px, max-content);
+  grid-gap: 40px;
+}
+
+.java-grid-info {
+  padding: 0 20px 10px;
+}
+
+.java-grid-item {
+  width: 250px;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.java-comments {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: start;
+  margin-left: 0;
+  margin-right: auto;
+}
+
+.java-comments-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.date {
+  margin-right: 5px;
 }

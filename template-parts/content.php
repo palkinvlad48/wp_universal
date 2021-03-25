@@ -96,7 +96,7 @@
 			<div class="post-author">
 				<div class="post-author-info">
 					<?php $author_id = get_the_author_meta('ID'); ?>
-          <img src="<?php echo get_avatar_url($autor_id); ?>" class="avatar" alt="Фото автора">
+          <img src="<?php echo get_avatar_url($author_id); ?>" class="avatar" alt="Фото автора">
           <span class="post-author-name"><?php the_author(); ?></span>
           <span class="post-author-rank">Должность</span> 
 					<span class="post-author-posts">

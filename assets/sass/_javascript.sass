@@ -1,0 +1,75 @@
+body
+  background-color: #f3f3f3
+.java-widget
+  border: none
+  background-color: #f3f3f3
+.main
+  &-java
+    width: 100%
+    display: flex
+    justify-content: space-between
+    align-items: top
+//    background-color: #f3f3f3
+  &-title
+    font-family: Roboto Slab
+    font-size: 40px
+    font-style: normal
+    font-weight: 700
+    line-height: 50px
+    letter-spacing: 0px
+    text-align: left
+.java
+  &-author-avatar
+    margin-right: 10px
+  &-author
+    width: 100%
+    margin-top: 20px
+    margin-bottom: 20px
+    display: flex
+    justify-content: space-between
+    align-items: center
+  &-grid
+    width: 74%
+    margin: 0 //0 30px
+    padding: 0
+    list-style: none
+    display: grid
+    grid-template-columns: repeat(auto-fit, minmax(30%, 1fr))
+    grid-template-rows: repeat(2, minmax(200px, max-content))
+    grid-auto-rows: minmax(200px, max-content)
+    grid-gap: 40px
+    &-info
+      padding: 0 20px 10px
+    &-item
+      width: 250px  // ???
+      margin-bottom: 20px
+      border-radius: 10px
+      background-color: #fff
+      overflow: hidden
+//      border: 2px solid red
+    &-title     
+      font-family: Roboto Slab
+      font-size: 16px
+      font-style: normal
+      font-weight: 700
+      line-height: 15px
+      letter-spacing: 0px
+      text-align: left
+    &-thumb::marker
+      content: ''
+      display: none
+.java-comments
+  display: flex
+  flex-direction: column
+  flex-wrap: wrap
+  align-items: center
+  justify-content: start
+  java-author-name
+  margin-left: 0
+  margin-right: auto
+  &-wrap
+    display: flex
+    justify-content: space-between
+    align-items: center
+.date
+  margin-right: 5px

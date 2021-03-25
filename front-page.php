@@ -8,9 +8,9 @@
 
           $myposts = $posts = get_posts( [
 	          'numberposts' => 1,
-            'offset' => 30,
+           // 'offset' => 30,
            // 'tag' => 'javascript, html, css, web-disign',
-	          'category-name' => 'javascript, html, css, web-disign',
+	          'category_name' => 'javascript, html, css, web-disign',
             ]
           );
           // Есть ли посты
@@ -316,6 +316,7 @@
     wp_reset_postdata();
 ?>    
   </ul>
+<!-- подключаем верхний сайдбар -->
   <?php get_sidebar('home-top'); ?>
   </div>
 </div>
@@ -598,7 +599,6 @@
       <!-- /.other -->
     </div>
     <!-- /container .special-grid -->
-    <!--?php get_sidebar('home-top'); ?-->
 </div>
 <!-- /.special -->
 <?php get_footer(); ?>

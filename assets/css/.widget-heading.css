@@ -1,0 +1,13 @@
+.widget {
+  border: none;
+  background-color: #fff;
+}
+
+.widget-heading-posts {
+  margin: 0;
+  padding: 0;
+}
+
+.widget-heading-posts-wrapper {
+  width: 23%;
+}

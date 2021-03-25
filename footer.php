@@ -47,13 +47,14 @@
     }
     ?>
     <div class="container">
-    <div class="footer-text-wrapper">
-      <?php dynamic_sidebar( 'sidebar-footer-text' ); ?>
-      <span class="footer-copyright"><?php echo '&copy;&nbsp;' . get_bloginfo('name') . '&nbsp;' . date('Y'); ?></span>
+      <div class="footer-text-wrapper">
+        <?php dynamic_sidebar( 'sidebar-footer-text' ); ?>
+        <span class="footer-copyright"><?php echo '&copy;&nbsp;' . get_bloginfo('name') . 
+        '&nbsp;' . date('Y'); ?></span>
+      </div>
+      <!-- /footer-text-wrapper -->
     </div>
-    <!-- /footer-text-wrapper -->
-  </div>
-  <!-- /container article-grid-item article-grid-item-default -->
+  <!-- /container -->
   </footer>
   <?php wp_footer(); ?> 
 </body>

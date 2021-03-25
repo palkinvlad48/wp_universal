@@ -10,7 +10,8 @@
 
       $query = new WP_Query( [
         'posts_per_page' => 6,
-        'category_name'  => 'javascript',
+    //  'offset'         => 2,
+        'category_name'      => 'javascript',
       //  'category__not_in' => 23, // кроме id=
       ]);
 
@@ -31,12 +32,12 @@
         <div class="java-grid-info">
           <h4 class="java-grid-title"><?php echo get_the_title(); ?></h4>
           <div class="java-grid-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 56, '...'); ?></div>
-          <div class="java-author">
+          <div class="author">
             <?php $autor_id = get_the_author_meta('ID'); ?>
-            <img src="<?php echo get_avatar_url($autor_id); ?>" alt="Фото автора" class="java-author-avatar">  
-            <div class="java-comments">
-              <div class="java-author-name"><?php the_author(); ?></div>
-              <div class="java-comments-wrap">
+            <img src="<?php echo get_avatar_url($autor_id); ?>" alt="Фото автора" class="author-avatar">  
+            <div class="comments">
+              <div class="author-name"><?php the_author(); ?></div>
+              <div class="comments-wrap">
                 <span class="date"><?php the_time( 'j F' )?></span>
                 <svg width="15" height="14" class="icon comments-icon">
                   <use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#comment">
