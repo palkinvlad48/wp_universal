@@ -150,17 +150,21 @@
       line-height: 20px
       &:visited
         color: #262D33
-  &-content
-    // max-width: 623px
+  &-wrap  // my 25.03
+    display: flex
+    justify-content: space-between
     padding-top: 60px
+  &-sidebar
+    margin-top: 130px
+  &-content
+    max-width: 700px
     padding-bottom: 30px
     p
       font-size: 18px
       line-height: 30px
       color: #4B5157
       margin: 30px 0
-      &:first-child
-        max-width: 700px
+      &:first-child //max-width: 700px
         &:first-letter
             color: #4592FF
             font-family: "Lato Black", sans-serif

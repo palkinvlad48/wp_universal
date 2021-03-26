@@ -50,7 +50,7 @@
 				?>
 			</div>
 			<!-- /.post-header-nav  -->
-			<div class="post-header-title-wrapper"> <!--"post-title-wrap"-->
+			<div class="post-header-title-wrapper"> <!--"post-title-wrapper"-->
 				<?php  	
 					// проверяем, точно ли мы на странице поста
 					if ( is_singular() ) :
@@ -122,6 +122,7 @@
   <div class="container">
 
   <!-- выводим содержимое поста -->
+	<div class="post-wrap">
 		<div class="post-content">
 			<?php
 				the_content(
@@ -146,7 +147,20 @@
 				)
 			);
 			?>
+			
 		</div><!-- .post-content -->
+		<div class="post-sidebar">
+		<?php 
+      if ( !is_active_sidebar( 'sidebar-some_category' )) {
+        return;
+      }
+    ?>
+    <!-- новый сайдбар -->
+      <?php dynamic_sidebar( 'sidebar-some_category' ); ?>
+    </div>
+		<!-- /.post-sidebar -->
+		</div>
+		<!-- /.post-wrap -->
 	</div>
 	<!-- /.container -->
 	<!-- подвал поста -->

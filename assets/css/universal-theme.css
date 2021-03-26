@@ -2175,8 +2175,22 @@ body {
   color: #262D33;
 }
 
-.post-content {
+.post-wrap {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
   padding-top: 60px;
+}
+
+.post-sidebar {
+  margin-top: 130px;
+}
+
+.post-content {
+  max-width: 700px;
   padding-bottom: 30px;
 }
 
@@ -2185,10 +2199,6 @@ body {
   line-height: 30px;
   color: #4B5157;
   margin: 30px 0;
-}
-
-.post-content p:first-child {
-  max-width: 700px;
 }
 
 .post-content p:first-child:first-letter {
@@ -2648,11 +2658,12 @@ body {
 }
 
 .java-grid-item {
-  width: 250px;
+  width: 260px;
   margin-bottom: 20px;
   border-radius: 10px;
   background-color: #fff;
   overflow: hidden;
+  list-style-type: none;
 }
 
 .java-comments {

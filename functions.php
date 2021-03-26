@@ -91,8 +91,8 @@ function universal_theme_widgets_init() {
 	);
 	register_sidebar( 
 		array(
-			'name'          => esc_html__('Посты javascript', 'universal-theme'),
-			'id'						=> 'sidebar-javascript', 
+			'name'          => esc_html__('Посты вашей рубрики', 'universal-theme'),
+			'id'						=> 'sidebar-some_category', //javascript', 
 			'description'		=> esc_html__('Добавьте виджет сюда', 'universal-theme'),
 			'before_widget'	=> '<section id="%1$s" class="java-widget %2$s">',
 			'after_widget'	=> '</section>',
@@ -567,7 +567,7 @@ class Heading_Posts_Widget extends WP_Widget {
 		// __construct( $id_base, $name, $widget_options = array(), $control_options = array() )
 		parent::__construct(
 			'heading_posts_widget', // ID виджета, если не указать (оставить ''), то ID будет равен названию класса в нижнем регистре
-			'Посты Javascript',
+			'Посты вашей рубрики',
 			array( 'description' => '', 'classname' => 'widget-heading-posts', )
 		);
 
@@ -587,20 +587,22 @@ class Heading_Posts_Widget extends WP_Widget {
 	function widget( $args, $instance ) {
 		$title = $instance['title']; 
 		$count = $instance['count'];
+		$category = $instance['category'];
 
 		echo $args['before_widget'];
 		echo '<div class="widget-heading-posts-wrapper">';
-		//if ( ! empty( $count ) ) {
-		//	if ( ! empty( $title ) ) {
-		//		echo $args['before_title']; // . $title . $args['after_title'];
-		//	}
+		if ( ! empty( $count ) ) {
+			if ( ! empty( $title ) ) {
+				echo $args['before_title']; // . $title . $args['after_title'];
+			}
 		
 			global $post;
 
 			$postlist = get_posts( [
-				'numberposts' => 2, //$count,  
-				'offset'      => 6,
-				'category_name' => 'javascript',
+				'numberposts' => $count,  
+				'offset'      => 1,
+				'category_name' => $category, //'javascript',
+				'category__not_in' => 263,
 			]);
 			//	array( 'post-per-page' => $count, 'order' => 'ASC', 'orderby' => 'title' ));
 			if ($postlist ) {
@@ -653,7 +655,7 @@ class Heading_Posts_Widget extends WP_Widget {
 			}
 			wp_reset_postdata();
 		}
-		//echo $args['after_widget'];
+			echo $args['after_widget'];
 		}
 	}
 	/**
@@ -662,14 +664,20 @@ class Heading_Posts_Widget extends WP_Widget {
 	 * @param array $instance сохраненные данные из настроек
 	 */
 	function form( $instance ) {
-		$title = @ $instance['title'] ?: 'Посты Javascript';
-		$count  = @ $instance['count'] ?: '3';
+		$title = @ $instance['title'] ?: 'Посты вашей рубрики';
+		$category = @ $instance['category'] ?: '';
+		$count  = @ $instance['count'] ?: '4';
 		?>
 		<p>
 			<label for="<?php echo $this->get_field_id( 'title' ); ?>"><?php _e( 'Заголовок:' ); ?></label> 
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php 
 			echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
 		</p>
+		<!--p>
+			<label for="<php echo $this->get_field_id( 'category' ); ?>"><php _e( 'Категория:' ); ?></label> 
+			<input class="widefat" id="<php echo $this->get_field_id( 'category' ); ?>" name="<php 
+			echo $this->get_field_name( 'category' ); ?>" type="text" value="<php echo esc_attr( $category ); ?>">
+		</p-->
 		<p>
 			<label for="<?php echo $this->get_field_id( 'count' ); ?>"><?php _e( 'Количество постов:' ); ?></label> 
 			<input class="widefat" id="<?php echo $this->get_field_id( 'count' ); ?>" name="<?php 
@@ -678,6 +686,7 @@ class Heading_Posts_Widget extends WP_Widget {
 		
 		<?php 
 	}
+}
 	/**
 	 * Сохранение настроек виджета. Здесь данные должны быть очищены и возвращены для сохранения их в базу данных.
 	 *
@@ -694,6 +703,7 @@ class Heading_Posts_Widget extends WP_Widget {
 		$instance = array();
 		$instance['title'] = ( ! empty( $new_instance['title'] ) ) ? strip_tags( $new_instance['title'] ) : '';
 		$instance['count'] = ( ! empty( $new_instance['count'] ) ) ? strip_tags( $new_instance['count'] ) : '0';
+		$instance['category'] = ( ! empty( $new_instance['category'] ) ) ? strip_tags( $new_instance['category'] ) : '';
 		
 		return $instance;
 	}
