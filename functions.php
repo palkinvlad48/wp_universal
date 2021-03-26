@@ -94,7 +94,7 @@ function universal_theme_widgets_init() {
 			'name'          => esc_html__('Посты вашей рубрики', 'universal-theme'),
 			'id'						=> 'sidebar-some_category', //javascript', 
 			'description'		=> esc_html__('Добавьте виджет сюда', 'universal-theme'),
-			'before_widget'	=> '<section id="%1$s" class="java-widget %2$s">',
+			'before_widget'	=> '<section id="%1$s" class="same-widget %2$s">',
 			'after_widget'	=> '</section>',
 			'before_title'	=> '', //<h2 class="widget-title">',
 			'after_title'		=> '', //</h2>',
@@ -587,10 +587,10 @@ class Heading_Posts_Widget extends WP_Widget {
 	function widget( $args, $instance ) {
 		$title = $instance['title']; 
 		$count = $instance['count'];
-		$category = $instance['category'];
+	//	$category = $instance['category'];
 
-		echo $args['before_widget'];
-		echo '<div class="widget-heading-posts-wrapper">';
+		//echo $args['before_widget'];
+		//echo '<div class="widget-heading-posts-wrapper">';
 		if ( ! empty( $count ) ) {
 			if ( ! empty( $title ) ) {
 				echo $args['before_title']; // . $title . $args['after_title'];
@@ -601,8 +601,9 @@ class Heading_Posts_Widget extends WP_Widget {
 			$postlist = get_posts( [
 				'numberposts' => $count,  
 				'offset'      => 1,
-				'category_name' => $category, //'javascript',
-				'category__not_in' => 263,
+				'category_name' => 'javascript', //$category,
+			//	'category__not_in' => 263,
+				'post__not_in' => array( $post->ID)
 			]);
 			//	array( 'post-per-page' => $count, 'order' => 'ASC', 'orderby' => 'title' ));
 			if ($postlist ) {
@@ -610,9 +611,9 @@ class Heading_Posts_Widget extends WP_Widget {
 					setup_postdata($post);
 			?>
 			
-			<li class="java-grid-item">
+			<li class="same-grid-item">
 			<a href="<?php the_permalink(); ?>" class="article-grid-permalink">
-        <img class="java-grid-thumb" src="
+        <img class="same-grid-thumb" src="
           <?php 
               if ( has_post_thumbnail() ) { 
                 echo get_the_post_thumbnail_url( null, 'thumb'); 
@@ -621,32 +622,20 @@ class Heading_Posts_Widget extends WP_Widget {
                 echo get_template_directory_url() . 'assets/images/img-default.png';
               } 
           ?>" alt="Рисунок поста">
-        <div class="java-grid-info">
-          <h4 class="java-grid-title"><?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?></h4>
-          <div class="java-grid-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 48, '...'); ?></div>
-          <div class="java-author">
-            <?php $autor_id = get_the_author_meta('ID'); ?>
-            <img src="<?php echo get_avatar_url($autor_id); ?>" alt="Фото автора" class="java-author-avatar">  
-            <div class="java-comments">
-              <div class="java-author-name"><?php the_author(); ?></div>
-              <div class="java-comments-wrap">
-                <span class="date"><?php the_time( 'j F' )?></span>
-                <svg width="15" height="14" class="icon comments-icon">
-                  <use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#comment">
-                  </use>
-                </svg>
-                <span class="comments-counter"><?php comments_number('0', '1', '%'  ) ?></span>&nbsp;
-                <svg fill="#BCBFC2" width="15" height="15" class="icon likes-icon">
-                  <use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#heart">
-                  </use>
-                </svg>
-                <span class="comments-counter"><?php comments_number('0', '1', '%'  )?></span>
-              </div>
-            </div>
+        <div class="same-grid-info">
+          <h4 class="same-grid-title"><?php echo mb_strimwidth(get_the_title(), 0, 30, '...'); ?></h4> 
+          <div class="same-comments">
+						<svg fill="#BCBFC2" width="15" height="11" class="icon likes-icon">
+							<use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#eye"></use>
+            </svg>
+            <span class="comments-counter"><?php comments_number('0', '1', '%'  ) ?></span>&nbsp;
+            <svg width="15" height="14" class="icon comments-icon">
+              <use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#comment"></use>
+						</svg>
+            <span class="comments-counter"><?php comments_number('0', '1', '%'  )?></span>
           </div>
-          <!--/.author-->
         </div>
-        <!-- /.java-grid-info -->
+        <!-- /.same-grid-info -->
 				</a>
       </li>
 		<!--/div-->
