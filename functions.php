@@ -592,17 +592,26 @@ class Heading_Posts_Widget extends WP_Widget {
 		//echo $args['before_widget'];
 		//echo '<div class="widget-heading-posts-wrapper">';
 		if ( ! empty( $count ) ) {
-			if ( ! empty( $title ) ) {
-				echo $args['before_title']; // . $title . $args['after_title'];
+	//		if ( ! empty( $title ) ) {
+	//			echo $args['before_title']; // . $title . $args['after_title'];
+	//		}
+		//	$posttags = get_the_tags(); 
+		//	$tags_list = get_the_tag_list( '',  esc_html_x(', ', 'list item separator', 'universal-theme' ) );
+		//	$tag = $posttags[0]->name;
+		//	'<p>' . $tags_list . '</p>';
+			$tag = '';
+			$posttags = get_the_tags();
+			if ( $posttags ) {
+				$tag = $posttags[0]->name . ' ';
 			}
-		
 			global $post;
 
 			$postlist = get_posts( [
 				'numberposts' => $count,  
 				'offset'      => 1,
-				'category_name' => 'javascript', //$category,
-			//	'category__not_in' => 263,
+			//	'tag'					=> $tag,
+			//	'category' => $category->term_id, 
+				'category_name' => $tag, //'javascript', 
 				'post__not_in' => array( $post->ID)
 			]);
 			//	array( 'post-per-page' => $count, 'order' => 'ASC', 'orderby' => 'title' ));
@@ -619,7 +628,7 @@ class Heading_Posts_Widget extends WP_Widget {
                 echo get_the_post_thumbnail_url( null, 'thumb'); 
               } 
               else {
-                echo get_template_directory_url() . 'assets/images/img-default.png';
+                echo get_template_directory_url() . 'assets/images/default.png';
               } 
           ?>" alt="Рисунок поста">
         <div class="same-grid-info">
@@ -644,7 +653,7 @@ class Heading_Posts_Widget extends WP_Widget {
 			}
 			wp_reset_postdata();
 		}
-			echo $args['after_widget'];
+		//	echo $args['after_widget'];
 		}
 	}
 	/**
@@ -654,7 +663,7 @@ class Heading_Posts_Widget extends WP_Widget {
 	 */
 	function form( $instance ) {
 		$title = @ $instance['title'] ?: 'Посты вашей рубрики';
-		$category = @ $instance['category'] ?: '';
+	//	$category = @ $instance['category'] ?: '';
 		$count  = @ $instance['count'] ?: '4';
 		?>
 		<p>
@@ -662,11 +671,6 @@ class Heading_Posts_Widget extends WP_Widget {
 			<input class="widefat" id="<?php echo $this->get_field_id( 'title' ); ?>" name="<?php 
 			echo $this->get_field_name( 'title' ); ?>" type="text" value="<?php echo esc_attr( $title ); ?>">
 		</p>
-		<!--p>
-			<label for="<php echo $this->get_field_id( 'category' ); ?>"><php _e( 'Категория:' ); ?></label> 
-			<input class="widefat" id="<php echo $this->get_field_id( 'category' ); ?>" name="<php 
-			echo $this->get_field_name( 'category' ); ?>" type="text" value="<php echo esc_attr( $category ); ?>">
-		</p-->
 		<p>
 			<label for="<?php echo $this->get_field_id( 'count' ); ?>"><?php _e( 'Количество постов:' ); ?></label> 
 			<input class="widefat" id="<?php echo $this->get_field_id( 'count' ); ?>" name="<?php 

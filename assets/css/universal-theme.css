@@ -1832,29 +1832,64 @@ body {
   margin-bottom: 25px;
 }
 
-.footer-social a:not(:first-child) {
-  margin-left: 20px;
+.footer-form {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  margin-bottom: 70px;
 }
 
-@media screen and (max-width: 1200px) {
-  .career-post-title,
-  .career-post-excerpt {
-    max-width: 70%;
-  }
+.footer-form-wrapper {
+  max-width: 760px;
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+.footer-form-title {
+  font-family: Roboto Slab;
+  font-size: 40px;
+  line-height: 50px;
+  margin-bottom: 25px;
+}
+
+.footer-form input {
+  margin-right: 10px;
+  padding: 10px 15px;
+  border: 1px solid #D9DADB;
+  border-radius: 5px;
+  min-width: 313px;
+}
+
+.footer-form button {
+  background: #4592FF;
+  border-radius: 20px;
+  font-size: 14px;
+  line-height: 20px;
+  color: #ffffff;
+  padding: 10px 25px;
+  border: none;
+  cursor: pointer;
 }
 
 @media screen and (max-width: 1024px) {
   .footer-menu {
     -ms-flex-preferred-size: 30%;
         flex-basis: 30%;
-  }
-  .footer-menu-bar {
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-  }
-  .career-post-title,
-  .career-post-excerpt {
-    max-width: 50%;
   }
 }
 
@@ -1884,43 +1919,20 @@ body {
 }
 
 @media screen and (max-width: 576px) {
-  .career-post-title,
-  .career-post-excerpt {
-    max-width: 100%;
-    color: #fff;
-    -webkit-box-align: center;
-        -ms-flex-align: center;
-            align-items: center;
-    -webkit-box-pack: center;
-        -ms-flex-pack: center;
-            justify-content: center;
-  }
-  .other-posts {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: normal;
-        -ms-flex-direction: column;
-            flex-direction: column;
-  }
-  .other-post {
-    width: 100%;
+  .footer-menu {
+    -ms-flex-preferred-size: 100%;
+        flex-basis: 100%;
+    margin-bottom: 20px;
   }
   .footer-nav {
-    width: 100%;
-    display: -webkit-box;
-    display: -ms-flexbox;
-    display: flex;
     -webkit-box-orient: vertical;
     -webkit-box-direction: normal;
         -ms-flex-direction: column;
             flex-direction: column;
-    -ms-flex-wrap: wrap;
-        flex-wrap: wrap;
-    -webkit-box-pack: start;
-        -ms-flex-pack: start;
-            justify-content: start;
     -webkit-box-align: start;
         -ms-flex-align: start;
-            align-items: start;
+            align-items: flex-start;
+    margin-left: 10px;
   }
 }
 
