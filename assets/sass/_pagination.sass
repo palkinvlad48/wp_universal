@@ -1,0 +1,55 @@
+.pagination
+  margin-bottom: 115px
+  .nav-links
+    margin-top: 10px
+    background-color: #fff
+    border-radius: 10px
+    display: flex
+    justify-content: center
+    align-items: center
+    *
+      padding: 17px
+      text-decoration: none
+      font-size: 14px
+      line-height: 20px
+      font-family: "Lato Black"
+      color: #262D33
+      text-align: center
+      &:not(:last-child)
+        border-right: 1px solid #D9DADB
+    .prev
+      position: relative
+      min-width: 440px
+      padding: 17px 70px
+      margin-right: auto
+      flex-grow: 1
+      &::before
+        content: ''
+        width: 15px
+        height: 7px
+        position: absolute
+        top: 22px
+        left: 175px //calc(width/2 - 60px)
+        background-image: url('../images/arrow_left.svg')
+        background-repeat: no-repeat
+        background-position: center right
+        background-size: 15px 7px
+    .next
+      position: relative
+      min-width: 440px
+      padding: 17px 70px
+      margin-left: auto
+      flex-grow: 1
+      &::after
+        content: ''
+        width: 15px
+        height: 7px
+        position: absolute        //padding-right: 20px
+        top: 22px
+        right: 170px //calc(width/2 + 20px)
+        background-image: url('../images/arrow_next.svg')
+        background-repeat: no-repeat
+        background-position: center left
+        background-size: 15px 7px
+  .current
+    color: blue

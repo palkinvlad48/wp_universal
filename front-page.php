@@ -359,30 +359,29 @@
   <div class="favourites"
     <div class="main-digest">
       <ul class="digest digest-wrapper">    
-  <?php 
-    global $post;
-    $query = new WP_Query( [
-      'posts_per_page' => 6,
-      'category_name' => 'opinions, hot, compilations',
-    ]);
+      <?php 
+        global $post;
+        $query = new WP_Query( [
+          'posts_per_page' => 6,
+          'category_name' => 'opinions, hot, compilations',
+        ]);
 
-    if ( $query->have_posts() ) {
-      while ( $query->have_posts() ) {
-        $query->the_post();
-  ?>
-         
-    <!-- выводим записи -->
+        if ( $query->have_posts() ) {
+          while ( $query->have_posts() ) {
+            $query->the_post();
+      ?>
+        <!-- выводим записи -->
         <li class="digest-item">
           <a class="digest-item-permalink" href="<?php echo get_the_permalink(); ?>"></a>
           <img src="
-        <?php 
-          if ( has_post_thumbnail() ) { 
-            echo get_the_post_thumbnail_url(); 
-          } 
-          else {
-            echo get_template_directory_url() . 'assets/images/img-default.png';
-          }
-        ?>" class="digest-thumb" alt="">
+          <?php 
+            if ( has_post_thumbnail() ) { 
+              echo get_the_post_thumbnail_url(); 
+            } 
+            else {
+              echo get_template_directory_url() . 'assets/images/img-default.png';
+            }
+          ?>" class="digest-thumb" alt="">
           
           <div class="digest-info">
             <button class="bookmark">
@@ -419,9 +418,8 @@
 
               <span class="comments-counter"><?php comments_number('0', '1', '%'  )?></span>
             </div>
-          </div>
-        
-        <!-- /digest-info -->
+          </div>  
+          <!-- /digest-info -->
         </li>
     <?php
         }
