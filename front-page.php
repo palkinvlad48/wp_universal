@@ -29,8 +29,7 @@
             <span class="author-rank">Должность</span> 
           </div>
         </a>
-        <!-- Например выводим заголовки постов -->
-        <!--p><!-php the_title(); ?></p-->
+        
         <div class="post-text">
           <?php 
             foreach (get_the_category() as $category) {
@@ -66,7 +65,7 @@
         $query = new WP_Query( [
       	  'posts_per_page' => 5,
         //  'offset' => 31,
-          'tag' => 'javascript, html, css, web-design',
+          'category_name'  => 'javascript, html, css, web-design',
         // 'paged'          => get_query_var( 'page' ),
         ] );
 
@@ -102,13 +101,13 @@
               </h4>
             </a>
           </li>
-          <?php
-          }
-        } else {
-    // Постов не найдено
-        }
-        wp_reset_postdata(); // сбрасываем $post
-      ?>
+              <?php
+                  }
+                } else {
+                  // Постов не найдено
+                }
+                wp_reset_postdata(); // сбрасываем $post
+              ?>
         </ul>
       </div>
     </div>
@@ -116,7 +115,7 @@
 </main>
 <div class="container">
   <ul class="article-list">
-  <!-- Выводим записи -->
+    <!-- Выводим записи -->
     <?php
       global $post;
           
@@ -131,70 +130,67 @@
 
 	  while ( $query->have_posts() ) {
 		  $query->the_post();
-      ?>
+    ?>
     
-        <!-- выводим записи -->      
-          <li class="article-item">
-            <a class="article-permalink" href="<php echo get_the_permalink(); ?>">
-             <h4 class="article-title"><?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?></h4>
-            </a>
-            <img width="65" height="65" src="<?php 
-              if ( has_post_thumbnail() ) { 
-                echo get_the_post_thumbnail_url( null, 'thumb'); 
-              } 
-              else {
-                echo 'Нет рисунка';
-               // echo get_template_directory_url() . 'assets/images/img-default.png';
-              } 
-            ?>" alt="">
-            
-        </li>
-          <?php
-          }
-        } else {
-    // Постов не найдено
+  <!-- выводим записи -->      
+    <li class="article-item">
+      <a class="article-permalink" href="<php echo get_the_permalink(); ?>">
+       <h4 class="article-title"><?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?></h4>
+      </a>
+      <img width="65" height="65" src="<?php 
+        if ( has_post_thumbnail() ) { 
+          echo get_the_post_thumbnail_url( null, 'thumb'); 
+        } 
+        else {
+        //  echo 'Нет рисунка';
+          echo get_template_directory_url() . 'assets/images/default.png';
+        } 
+        ?>" alt="">      
+    </li>
+    <?php
         }
-        wp_reset_postdata(); // сбрасываем $post
-      ?>
-        </ul>
+      } else {
+        // Постов не найдено
+      }
+      wp_reset_postdata(); // сбрасываем $post
+    ?>
+  </ul>
   <!-- ./article-list -->
-  
-  <!-- article-grid -->
-    <!-- Подключение сайдбара -->
+  <!-- Подключение сайдбара -->
   <div class="main-grid">
     <ul class="article-grid">
-  <?php 
-    global $post;
+    <?php 
+      global $post;
 
-    $query = new WP_Query( [
-      'posts_per_page' => 7,
-      'tag' => 'popular', // N
-      'category__not_in' => 27, // кроме id=27
-    ]);
+      $query = new WP_Query( [
+        'posts_per_page' => 7,
+        'tag' => 'popular', // N
+        'category__not_in' => 27, // кроме id=27
+      ]);
 
-    if ( $query->have_posts() ) {
+      if ( $query->have_posts() ) {
       // создаем счетчик постов
-      $cnt = 0;
-      while ( $query->have_posts() ) {
-        $query->the_post();
-        $cnt++;
-        switch ($cnt) {
-          case '1':
-      // выводим 1-й пост
-  ?>
-    <li class="article-grid-item article-grid-item-1">
-      <a href="<?php the_permalink(); ?>" class="article-grid-permalink">
-        <img class="article-grid-thumb" src="
+        $cnt = 0;
+        while ( $query->have_posts() ) {
+          $query->the_post();
+          $cnt++;
+          switch ($cnt) {
+            case '1':
+        // выводим 1-й пост
+    ?>
+      <li class="article-grid-item article-grid-item-1">
+        <a href="<?php the_permalink(); ?>" class="article-grid-permalink">
+          <img class="article-grid-thumb" src="
           <?php 
-              if ( has_post_thumbnail() ) { 
-                echo get_the_post_thumbnail_url( null, 'thumb'); 
-              } 
-              else {
-                echo get_template_directory_url() . 'assets/images/img-default.png';
-              } 
+            if ( has_post_thumbnail() ) { 
+              echo get_the_post_thumbnail_url( null, 'thumb'); 
+            } 
+            else {
+              echo get_template_directory_url() . 'assets/images/default.png';
+            } 
           ?>" alt="Рисунок поста">
-        <span class="category-name">
-        <?php 
+          <span class="category-name">
+          <?php 
             foreach (get_the_category() as $category) {
               printf(
                 '<a href="%s" class="category-link %s">%s</a>', 
@@ -204,34 +200,34 @@
               );
             }
           ?>
-        <!--php 
-          $category = get_the_category(); echo $category[0]->name; ?-->
-        </span>
-        <h4 class="article-grid-title"><?php echo get_the_title(); ?></h4>
-        <div class="article-grid-excerpt"><?php the_excerpt(); ?></div>
-        <div class="article-grid-info">
-          <div class="author">
+          <!--php $category = get_the_category(); echo $category[0]->name; ?-->
+          </span>
+          <h4 class="article-grid-title"><?php echo get_the_title(); ?></h4>
+          <div class="article-grid-excerpt"><?php the_excerpt(); ?></div>
+          <div class="article-grid-info">
+            <div class="author">
             <?php $autor_id = get_the_author_meta('ID'); ?>
             <img src="<?php echo get_avatar_url($autor_id); ?>" alt="Фото автора" class="author-avatar">
             <span class="author-name"><strong><?php the_author(); ?></strong>: 
               <?php echo mb_strimwidth(get_the_author_meta('description'), 0, 30, '...'); ?>
             </span>
-          </div>
-          <div class="comments">
+            </div>
+            <div class="comments">
             <svg width="15" height="14" class="icon comments-icon">
               <use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#comment">
               </use>
             </svg>
             <span class="comments-counter"><?php comments_number('0', '1', '%'  )?></span>
+            </div>
           </div>
-        </div>
-      </a>
-    </li>
-  <?php
+          <!-- /.article-grid-info -->
+        </a>
+      </li>
+    <?php
       break;
       case '2':
       // выводим 2-й пост
-  ?>
+    ?>
     <li class="article-grid-item article-grid-item-2">
       <img src="
       <?php 
@@ -239,7 +235,7 @@
           echo get_the_post_thumbnail_url( null, 'thumb'); 
         } 
         else {
-          echo get_template_directory_url() . 'assets/images/img-default.png';
+          echo get_template_directory_url() . 'assets/images/default.png';
         } 
       ?>" alt="Фоновый рисунок" class="article-grid-thumb">
       <a href="<?php the_permalink(); ?>" class="article-grid-permalink">
@@ -255,7 +251,6 @@
             <?php $autor_id = get_the_author_meta('ID'); ?>
             <img src="<?php echo get_avatar_url($autor_id); ?>" alt="Фото автора" class="author-avatar">
             <span class="author-name"><?php the_author(); ?></span>
-            
           </div>
           <div class="comments">
             <span class="date"><?php the_time( 'j F' )?></span>
@@ -268,61 +263,63 @@
               <use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#heart">
               </use>
             </svg>
-            <!--span class="icon likes"></span-->
             <span class="comments-counter"><?php comments_number('0', '1', '%'  )?></span>
           </div>
+          <!-- /.comments -->
         </div>
+        <!-- /.article-grid-info -->
       </a>
     </li>
-<?php
+    <?php
       break;
       case '3':
       // выводим 3-й пост
-?>
+    ?>
     <li class="article-grid-item article-grid-item-3">
       <a href="<?php the_permalink(); ?>" class="article-grid-permalink">
-      <img src="
-      <?php 
-        if ( has_post_thumbnail() ) { 
-          echo get_the_post_thumbnail_url( null, 'thumb'); 
-        } 
-        else {
-          echo get_template_directory_url() . 'assets/images/img-default.png';
-        } 
-      ?>" alt="Рисунок поста" class="article-grid-thumb">
-      <h4 class="article-grid-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...'); ?></h4>
-    </a>
-  </li>
-<?php 
-    break;
-    default:
-        // выводим остальные посты
-?>
-  <li class="article-grid-item article-grid-item-default">
-    <a href="<?php the_permalink(); ?>" class="article-grid-permalink">
-      <h4 class="article-grid-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...'); ?></h4>
-      <p class="article-grid-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 76, '...'); ?></p>
-      <span class="article-date"><?php the_time( 'j F' )?></span> 
-      <!-- если the_date, то дата выводится только в 1-м посте  -->
-    </a>
-  </li>
-<?php 
+        <img src="
+        <?php 
+          if ( has_post_thumbnail() ) { 
+            echo get_the_post_thumbnail_url( null, 'thumb'); 
+          } 
+          else {
+            echo get_template_directory_url() . 'assets/images/default.png';
+          } 
+        ?>" alt="Рисунок поста" class="article-grid-thumb">
+        <h4 class="article-grid-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...'); ?></h4>
+      </a>
+    </li>
+    <?php 
       break;
-    }    
-  }
-} else {
+      default:
+        // выводим остальные посты
+    ?>
+    <li class="article-grid-item article-grid-item-default">
+      <a href="<?php the_permalink(); ?>" class="article-grid-permalink">
+        <h4 class="article-grid-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...'); ?></h4>
+        <p class="article-grid-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 76, '...'); ?></p>
+        <span class="article-date"><?php the_time( 'j F' )?></span> 
+        <!-- если the_date, то дата выводится только в 1-м посте  -->
+      </a>
+    </li>
+    <?php 
+        break;
+        }    
+      }
+    } else {
       // Нет постов
-}
+    }
     wp_reset_postdata();
-?>    
+    ?>    
   </ul>
-<!-- подключаем верхний сайдбар -->
-  <?php get_sidebar('home-top'); ?>
+  <!-- /article-grid -->
+    <!-- подключаем верхний сайдбар -->
+    <?php get_sidebar('home-top'); ?>
   </div>
+  <!-- /.main-grid -->
 </div>
-<!-- /container -->
-
-<?php 
+<!-- /.container -->
+  <?php 
     global $post;
 
     $query = new WP_Query( [
@@ -353,35 +350,36 @@
     wp_reset_postdata();
   ?>
   </div>
+  <!-- /.container -->
 </section>
-<!--/section class=""-->
+<!--/section class="investigation" -->
 <div class="container">
   <div class="favourites"
     <div class="main-digest">
       <ul class="digest digest-wrapper">    
-      <?php 
-        global $post;
-        $query = new WP_Query( [
-          'posts_per_page' => 6,
-          'category_name' => 'opinions, hot, compilations',
-        ]);
-
-        if ( $query->have_posts() ) {
-          while ( $query->have_posts() ) {
-            $query->the_post();
-      ?>
+        <?php 
+          global $post;
+          $query = new WP_Query( [
+            'posts_per_page' => 6,
+            'category_name' => 'opinions, hot, compilations',
+          ]);
+  
+          if ( $query->have_posts() ) {
+            while ( $query->have_posts() ) {
+              $query->the_post();
+        ?>
         <!-- выводим записи -->
         <li class="digest-item">
           <a class="digest-item-permalink" href="<?php echo get_the_permalink(); ?>"></a>
           <img src="
           <?php 
             if ( has_post_thumbnail() ) { 
-              echo get_the_post_thumbnail_url(); 
+              echo get_the_post_thumbnail_url( null, 'thumb'); //get_the_post_thumbnail_url(); 
             } 
-            else {
-              echo get_template_directory_url() . 'assets/images/img-default.png';
+            else { 
+              //echo get_template_directory_url() . '/assets/images/default.png';
             }
-          ?>" class="digest-thumb" alt="">
+          ?>" class="digest-thumb" alt="Рисунок поста">
           
           <div class="digest-info">
             <button class="bookmark">
@@ -390,18 +388,17 @@
                 </use>
               </svg>
             </button>
-        <?php 
-          foreach (get_the_category() as $category) {
-            printf(
-              '<a href="%s" class="category-link %s">%s</a>', 
+          <?php 
+            foreach (get_the_category() as $category) {
+              printf(
+                '<a href="%s" class="category-link %s">%s</a>', 
                 esc_url( get_category_link( $category )), // для безопасности
                 esc_html( $category -> slug ),
                 esc_html( $category -> name )
-            );
-          }
-        ?>
+              );
+            }
+          ?>
             <h2 class="digest-title"><?php echo mb_strimwidth(get_the_title(), 0, 40, '...'); ?></h2>
-      
             <div class="article-grid-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 190, '...'); ?></div>  
             <div class="comments">
               <span class="date"><?php the_time( 'j F' )?></span>
@@ -415,25 +412,27 @@
                 <use xlink:href="<?php echo get_template_directory_uri(); ?>/assets/images/sprite.svg#heart">
                 </use>
               </svg>
-
               <span class="comments-counter"><?php comments_number('0', '1', '%'  )?></span>
             </div>
+            <!-- /.comments -->
           </div>  
           <!-- /digest-info -->
         </li>
-    <?php
-        }
-      } else {
-    // Постов не найдено
-      }
-      wp_reset_postdata(); // сбрасываем $post
-    ?>
-    </ul> 
-  <!-- подключаем нижний сайдбар -->
-    <?php echo get_sidebar('home-bottom'); ?>
+        <?php
+            }
+          } else {
+            // Постов не найдено
+          }
+          wp_reset_postdata(); // сбрасываем $post
+        ?>
+      </ul> 
+      <!-- /.digest digest-wrapper -->
+      <!-- подключаем нижний сайдбар -->
+      <?php echo get_sidebar('home-bottom'); ?>
+    </div>
+    <!-- /.main-digest -->
   </div>
-</div>
-<!-- /.favourites -->
+  <!-- /.favourites -->
 </div>
 <!-- /.container-->
 <div class="special">
@@ -498,34 +497,33 @@
           </a>
         </div>
         <!-- /.photo-report-content -->
-      <?php
+        <?php
+          }
+        } else {
+          // Постов не найдено
         }
-      } else {
-    // Постов не найдено
-      }
-      wp_reset_postdata(); // сбрасываем $post
-    ?>
-
+        wp_reset_postdata(); // сбрасываем $post
+        ?>
       </div>
       <!-- /.photo-report -->
       <div class="other">
         <div class="career-post">
-  <?php 
-    global $post;
+      <?php 
+        global $post;
 
-    $query = new WP_Query( [
-      'posts_per_page' => 1,
-      'tag' => 'career, working', // N
-      //'category__not_in' => 27, // кроме id=27
-    ]);
+        $query = new WP_Query( [
+          'posts_per_page' => 1,
+          'tag' => 'career, working', // N
+          //'category__not_in' => 27, // кроме id=27
+        ]);
 
-    if ( $query->have_posts() ) {
-
-      while ( $query->have_posts() ) {
-        $query->the_post();
+        if ( $query->have_posts() ) {
+        
+          while ( $query->have_posts() ) {
+            $query->the_post();
        // выводим пост
-  ?>
-  <?php 
+      ?>
+      <?php 
         foreach (get_the_category() as $category) {
           printf(
           '<a href="%s" class="career-post-link">%s</a>', 
@@ -534,10 +532,8 @@
           esc_html( $category -> name )
         );
       }
-   ?>
-          <!--a href="<?php the_permalink(); ?>" class="career-post-link">
-          
-          </a-->
+      ?>
+          <!--a href="<?php the_permalink(); ?>" class="career-post-link"></a-->
           <h3 class="career-post-title"><?php the_title(); ?></h3>
           <p class="career-post-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 60, '...'); ?></p>
           <a href="<?php echo get_permalink(); ?>" class="more">
@@ -553,9 +549,7 @@
       // Нет постов
     }
     wp_reset_postdata();
-  ?>    
-      
-      
+  ?>        
         </div>
         <!-- /.career-post -->
         <div class="other-posts">
@@ -580,7 +574,7 @@
             <h4 class="other-post-title"><?php echo mb_strimwidth(get_the_title(), 0, 40, '...'); ?></h4>
             <p class="other-post-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 60, '...'); ?></p>
             <span class="other-post-date"><?php the_time( 'j F Y' )?></span> 
-      <!-- если the_date, то дата выводится только в 1-м посте  -->
+            <!-- если the_date, то дата выводится только в 1-м посте  -->
           </a>
           
   <?php   

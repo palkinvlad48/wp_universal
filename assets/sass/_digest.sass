@@ -1,25 +1,64 @@
-.search 
-  background-color: #e5e5e5 
+a
+  text-decoration: none
+.main-digest
+  display: flex
+  justify-content: space-between
+  align-items: flex-start
+  padding-top: 30px
+  padding-bottom: 30px
+  border: 1px solid red
+.widget
+  margin-top: 0px // my
+.category-name
+  font-weight: 900
+  font-size: 12px
+  line-height: 15px
+  text-transform: uppercase
+  color: #4592FF
+  text-decoration: none
+  &.web-design
+    color: #ffa34d
+  &.javascript
+    color: blue // #6e99ae
+  &.html
+    color: #ac8ee3
+  &.css
+    color: #3DC47E
+  &.hot
+    color: red
+  &.opinions
+    color: #3BBDC4
 .favourites
   display: flex
   align-items: flex-start
   justify-content: space-between
-  padding-bottom: 30px
+  // padding-bottom: 30px
+//.proba  border: 1px solid red
+.article-grid-excerpt
+  margin-bottom: 20px
+.date
+  margin-right: 10px
+  color: #000
+.comments-counter
+  margin-right: 10px
 .digest
   margin-top: 30px
   list-style: none
   padding: 0
   margin: 0
   background-color: #fff
-  border-radius: 10px //  padding: 0 25px
+  border-radius: 10px
+  padding: 0 25px
+  text-decoration: none
   &-wrapper
     width: 74%
   &-item
     display: flex
     align-items: center
-    padding: 25px 
-    &:not(:last-child)
-      border-bottom: 1px solid #D9DADB
+    padding: 25px 0
+    border-bottom: 1px solid #cfcfcf
+  //  &::not(:last-child) ??? no worked
+  //    border-bottom: 1px solid #cfcfcf//#D9DADB
     &-permalink
       text-decoration: none
       flex-shrink: 0
@@ -32,15 +71,16 @@
     position: relative
     width: 100%
   &-title
-    font-family: Roboto Slab
+    font-family: 'Roboto Slab'
     font-style: normal
     font-weight: bold
     font-size: 20px
     line-height: 25px
-    color: #262D33
+    color: #262D33 // #4B5157
     margin-top: 15px
     margin-bottom: 10px
     max-width: 400px
+    text-decoration: none
   &-excerpt
     margin: 0 0 20px
   &-footer

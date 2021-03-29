@@ -42,6 +42,42 @@ function enqueue_universal_style() {
 }
 add_action( 'wp_enqueue_scripts', 'enqueue_universal_style' );
 
+// Подключаем локализацию в самом конце подключаемых к выводу скриптов, чтобы скрипт
+// 'twentyfifteen-script', к которому мы подключаемся, точно был добавлен в очередь на вывод.
+// Заметка: код можно вставить в любое место functions.php темы
+add_action( 'wp_enqueue_scripts', 'adminAjax_data', 99 );
+
+function adminAjax_data(){
+	// Первый параметр 'jquery' означает, что код будет прикреплен к скрипту с ID 
+	// 'jquery'
+	// 'jquery' должен быть добавлен в очередь на вывод, иначе WP не поймет куда вставлять код 
+	// локализации. Заметка: обычно этот код нужно добавлять в functions.php в том месте, где подключаются скрипты, 
+	// после указанного скрипта
+	wp_localize_script( 'jquery-core', 'adminAjax',
+		array(
+			'url' => admin_url('admin-ajax.php')
+		)
+	);
+}
+
+add_action( 'wp_ajax_contacts_form', 'ajax_form' );
+add_action( 'wp_ajax_nopriv_contacts_form', 'ajax_form' );
+function ajax_form(){
+	$contact_name = $_POST['contact_name'];
+	$contact_email = $_POST['contact_email'];
+	$contact_comment = $_POST['contact_comment'];
+	$headers = 'From: Артем <myname@mydomain.com>' . "\r\n"; 
+	$message = 'Пользователь ' . $contact_name;
+	$sent_message = wp_mail('palkinw@mail.ru', 'Заявка. Содержание: ', $message, $headers);
+	if ($sent_message) {
+		echo 'Все хорошо';
+	} else {
+		echo 'Ошибка';
+	}
+	//mail('palkinw@mail.ru', 'Новая заявка', $message, $headers);
+	// выход нужен, чтобы в ответе не было ничего лишнего, только то, что вернет ф-я
+	wp_die();
+}
 // Подключение сайдбара
 
 function universal_theme_widgets_init() {
@@ -601,6 +637,7 @@ class Heading_Posts_Widget extends WP_Widget {
 		//	'<p>' . $tags_list . '</p>';
 			$tag = '';
 			$posttags = get_the_tags();
+			$category = get_the_category();
 			if ( $posttags ) {
 				$tag = $posttags[0]->name . ' ';
 			}
@@ -609,9 +646,9 @@ class Heading_Posts_Widget extends WP_Widget {
 			$postlist = get_posts( [
 				'numberposts' => $count,  
 				'offset'      => 1,
-			//	'tag'					=> $tag,
+				'tag'					=> $tag,
 			//	'category' => $category->term_id, 
-				'category_name' => $tag, //'javascript', 
+				'category_name' => $category->name, //'javascript', 
 				'post__not_in' => array( $post->ID)
 			]);
 			//	array( 'post-per-page' => $count, 'order' => 'ASC', 'orderby' => 'title' ));

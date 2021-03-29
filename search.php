@@ -2,37 +2,41 @@
 get_header(); ?>
 <div class="container">
   <h1 class="search-title">Результаты поиска по запросу</h1>
-  <div class="favourites"> 
+  <div class="search-favourites"> 
     <!--div class="main-digest"-->
-      <ul class="digest digest-wrapper">
-      <?php 
-        global $post;
+      <ul class="search-digest search-digest-wrapper">
+      <?php global $post;
+
+			  $postlist = get_posts();
+
+  			if ($postlist ) {
+	  			foreach ( $postlist as $post) {
+		  			setup_postdata($post);
+			
+      /*  global $post;
         $query = new WP_Query( [
           'posts_per_page' => 6,
-          'category_name' => 'opinions, hot, compilations',
+          'category_name' => 'javascript, css, web-disign',
         ]);
 
         if ( $query->have_posts() ) {
           while ( $query->have_posts() ) {
-            $query->the_post();
+            $query->the_post();*/
       ?>
         <!-- выводим записи -->
-        <li class="digest-item">
-          <a class="digest-item-permalink" href="<?php echo get_the_permalink(); ?>">
-          <?php
-
-          ?>
+        <li class="search-digest-item">
+          <a class="search-digest-item-permalink" href="<?php echo get_the_permalink(); ?>">
             <img src="
             <?php 
               if ( has_post_thumbnail() ) { 
                 echo get_the_post_thumbnail_url(); 
               } 
               else {
-                echo get_template_directory_url() . 'assets/images/img-default.png';
+                echo get_template_directory_url() . '/assets/images/default.png';
               }
-            ?>" class="digest-thumb" alt="">
+            ?>" class="search-digest-thumb" alt="">
           </a>
-          <div class="digest-info">
+          <div class="search-digest-info">
             <?php 
               foreach (get_the_category() as $category) {
                 printf(
@@ -43,7 +47,7 @@ get_header(); ?>
                 );
               }
             ?>
-            <h2 class="digest-title"><?php echo mb_strimwidth(get_the_title(), 0, 40, '...'); ?></h2>
+            <h2 class="search-digest-title"><?php echo mb_strimwidth(get_the_title(), 0, 40, '...'); ?></h2>
             <div class="article-grid-excerpt"><?php echo mb_strimwidth(get_the_excerpt(), 0, 190, '...'); ?></div>  
             <div class="comments">
               <span class="date"><?php the_time( 'j F' )?></span>
@@ -70,7 +74,7 @@ get_header(); ?>
     ?>
       </ul>
     
-    <!-- подключаем нижний сайдбар home-bottom-->
+    <!-- подключаем нижний сайдбар -->
     <?php echo get_sidebar('home-bottom'); ?>
     </div>
     <?php 
