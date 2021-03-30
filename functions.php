@@ -66,14 +66,14 @@ function ajax_form(){
 	$contact_name = $_POST['contact_name'];
 	$contact_email = $_POST['contact_email'];
 	$contact_comment = $_POST['contact_comment'];
-	$headers = 'From: Артем <myname@mydomain.com>' . "\r\n"; 
+	$headers = 'From: Артем <islamovtema@yandex.ru>' . "\r\n"; 
 	$message = 'Пользователь ' . $contact_name;
-	$sent_message = wp_mail('palkinw@mail.ru', 'Заявка. Содержание: ', $message, $headers);
+	$sent_message = wp_mail('palkinw@mail.ru', 'Заявка: ' . ' Содержание: ', $message, $headers);
 	if ($sent_message) {
 		echo 'Все хорошо';
 	} else {
 		echo 'Ошибка';
-	}
+	}/**/
 	//mail('palkinw@mail.ru', 'Новая заявка', $message, $headers);
 	// выход нужен, чтобы в ответе не было ничего лишнего, только то, что вернет ф-я
 	wp_die();

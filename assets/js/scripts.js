@@ -12,19 +12,25 @@ menuToggle.on('click', function (event) {
 
 })
 
-let contactsform = $('.contacts-form')
+let contactsform = $('.contacts-form');
 
 contactsform.on('submit', function (event) {
   event.preventDefault();
-  let formData = new FormData(this)
-  formData.append('action', 'ajax_form')
+  let formData = new FormData(this);
+  formData.append('action', 'contacts_form');
 
   $.ajax({
     method: "POST",
+    //  url: '/wp-admin/admin-ajax.php',
     url: adminAjax.url,
+    headers: {
+      "Accept": "application/json; odata=verbose"
+    },
+    data: JSON.stringify(formData),
     //  dataType: 'json',
-    data: formData,
+    //data: formData,
     contentType: false,
+    processData: false,
     success: function (data) {
       console.dir(data);
     },
@@ -42,7 +48,7 @@ contactsform.on('submit', function (event) {
       } else if (exception === 'abort') {
         alert('Ajax request aborted.');
       } else {
-        alert('Uncaught Error. ' + jqXHR.responseText);
+        alert('Uncaught Error: ' + jqXHR.responseText);
       }
     }
   });
