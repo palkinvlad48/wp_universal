@@ -49,7 +49,7 @@ get_header();
           if ($phone) { echo '<a class="link-phone" href="tel:' . $phone . '">' . $phone . '</a>'; }
         ?>
         <php endwhile; ?>
-        <php endif; >
+        <php endif; -->
         
         <?php
           $email = get_post_meta( get_the_ID(), 'email', true );
@@ -70,7 +70,6 @@ get_header();
     
   </div>
 </section>
-
 
 <?php 
 get_footer();
