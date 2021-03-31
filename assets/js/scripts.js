@@ -12,7 +12,7 @@ menuToggle.on('click', function (event) {
 
 })
 
-let contactsform = $('.contacts-form');
+/*let contactsform = $('.contacts-form');
 
 contactsform.on('submit', function (event) {
   event.preventDefault();
@@ -55,7 +55,7 @@ contactsform.on('submit', function (event) {
 
   //  return false;
 });
-
+*/
 
 /*dataType: 'json',
 cache: false,
@@ -71,3 +71,26 @@ error: function (data) {
 });
 
 });*/
+// Вариант Ворбьева
+jQuery(document).ready(function ($) {
+
+  /* let action = $('#vp_send_cont_form').val();
+ 
+   let data = {
+     action: action,     //  и далее остальные данные
+   }*/
+
+  $('#contacts_form_button').on('click', function (e) {
+    e.preventDefault();
+
+    $.ajax({
+      url: adminAjax.url,
+      type: "POST",
+      data: $('#contacts_form').serialize(), // или data + action: action,
+      success: function (request) { //alert('Письмо ушло') 
+      },
+      error: function (request) { }
+    })
+  })
+
+});

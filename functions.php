@@ -43,16 +43,13 @@ function enqueue_universal_style() {
 add_action( 'wp_enqueue_scripts', 'enqueue_universal_style' );
 
 // Подключаем локализацию в самом конце подключаемых к выводу скриптов, чтобы скрипт
-// 'twentyfifteen-script', к которому мы подключаемся, точно был добавлен в очередь на вывод.
+// 'adminAjax_data', к которому мы подключаемся, точно был добавлен в очередь на вывод.
 // Заметка: код можно вставить в любое место functions.php темы
 add_action( 'wp_enqueue_scripts', 'adminAjax_data', 99 );
-
 function adminAjax_data(){
-	// Первый параметр 'jquery' означает, что код будет прикреплен к скрипту с ID 
-	// 'jquery'
-	// 'jquery' должен быть добавлен в очередь на вывод, иначе WP не поймет куда вставлять код 
-	// локализации. Заметка: обычно этот код нужно добавлять в functions.php в том месте, где подключаются скрипты, 
-	// после указанного скрипта
+	// Первый параметр 'jquery' означает, что код будет прикреплен к скрипту с ID 'jquery'
+	// 'jquery' должен быть добавлен в очередь на вывод, иначе WP не поймет куда вставлять код локализации.
+	// Заметка: обычно этот код нужно добавлять в functions.php в том месте, где подключаются скрипты, после указанного скрипта
 	wp_localize_script( 'jquery-core', 'adminAjax',
 		array(
 			'url' => admin_url('admin-ajax.php')
@@ -60,20 +57,36 @@ function adminAjax_data(){
 	);
 }
 
-add_action( 'wp_ajax_contacts_form', 'ajax_form' );
-add_action( 'wp_ajax_nopriv_contacts_form', 'ajax_form' );
-function ajax_form(){
-	$contact_name = $_POST['contact_name'];
-	$contact_email = $_POST['contact_email'];
-	$contact_comment = $_POST['contact_comment'];
-	$headers = 'From: Артем <islamovtema@yandex.ru>' . "\r\n"; 
-	$message = 'Пользователь ' . $contact_name;
-	$sent_message = wp_mail('palkinw@mail.ru', 'Заявка: ' . ' Содержание: ', $message, $headers);
-	if ($sent_message) {
+add_action( 'wp_ajax_vp_send_cont_form', 'vp_ajax_form' );
+add_action( 'wp_ajax_nopriv_vp_send_cont_form', 'vp_ajax_form' );
+
+function vp_ajax_form(){
+
+	if ( empty($_POST) || ! wp_verify_nonce( $_POST['_nonce_send_cont_form'], 'send_cont_form') ){
+   print 'Извините, проверочные данные не соответствуют.';
+   exit;
+	}
+	else {
+		// обрабатываем данные
+		$contact_name = $_POST['contact_name'];
+		$contact_email = $_POST['contact_email'];
+		$contact_comment = $_POST['contact_comment'];
+		
+		$headers = 'From: Владимир ' . $contact_email . "\r\n"; //Артем <islamovtema@yandex.ru>'
+		$message = ' Отправитель ' . $contact_name . "\r\n" . ' Вопрос: ' . $contact_comment;
+
+		$sent_message = wp_mail('palkinw@mail.ru', 'Тема: ' . ' Содержание: ', $message, $headers);
+
+//		wpcf7mailsent - событие: форма успешно была отправлена на сервер и почта отправлена адресату 
+		if ($sent_message) {
 		echo 'Все хорошо';
-	} else {
-		echo 'Ошибка';
-	}/**/
+		} else {
+			echo 'Ошибка';
+		}
+
+	}
+	
+	/**/
 	//mail('palkinw@mail.ru', 'Новая заявка', $message, $headers);
 	// выход нужен, чтобы в ответе не было ничего лишнего, только то, что вернет ф-я
 	wp_die();
@@ -809,3 +822,90 @@ function plural_form($number, $after) {
 	$cases = array (2,0,1,1,1,2);
 	echo $number . ' ' . $after[ ($number%100>4 && $number%100<20)? 2: $cases[min($number%10, 5)] ];
 }
+
+// группа полей контакты 
+if( function_exists('acf_add_local_field_group') ):
+
+  acf_add_local_field_group(array(
+	  'key' => 'group_606451d3f34ff',
+	  'title' => 'контакты',
+	  'fields' => array(
+		  array(
+			  'key' => 'field_6064524cf8663',
+			  'label' => 'email',
+			  'name' => 'email',
+			  'type' => 'text',
+			  'instructions' => '',
+			  'required' => 1,
+			  'conditional_logic' => 0,
+			  'wrapper' => array(
+				  'width' => '',
+				  'class' => '',
+				  'id' => '',
+			  ),
+			  'default_value' => 'hello@forpeople.studio',
+			  'placeholder' => '',
+			  'prepend' => '',
+			  'append' => '',
+			  'maxlength' => '',
+		  ),
+		  array(
+			  'key' => 'field_606452b9fbca6',
+			  'label' => 'address',
+			  'name' => 'address',
+			  'type' => 'text',
+			  'instructions' => '',
+			  'required' => 1,
+			  'conditional_logic' => 0,
+			  'wrapper' => array(
+				  'width' => '',
+				  'class' => '',
+				  'id' => '',
+			  ),
+			  'default_value' => '3522 I-75, Business Spur Sault Sainte Marie, MI, 49783',
+			  'placeholder' => '',
+			  'prepend' => '',
+			  'append' => '',
+			  'maxlength' => '',
+		  ),
+		  array(
+			  'key' => 'field_6064534e55b7c',
+			  'label' => 'phone',
+			  'name' => 'phone',
+			  'type' => 'text',
+			  'instructions' => '',
+			  'required' => 1,
+			  'conditional_logic' => 0,
+			  'wrapper' => array(
+				  'width' => '',
+				  'class' => '',
+				  'id' => '',
+			  ),
+			  'default_value' => '+2 800 089 45 34',
+			  'placeholder' => '',
+			  'prepend' => '',
+			  'append' => '',
+			  'maxlength' => '',
+		  ),
+	  ),
+	  'location' => array(
+		  array(
+			  array(
+				  'param' => 'page',
+				  'operator' => '==',
+				  'value' => '190',
+			  ),
+		  ),
+	  ),
+	  'menu_order' => 0,
+	  'position' => 'normal',
+	  'style' => 'default',
+	  'label_placement' => 'top',
+	  'instruction_placement' => 'label',
+	  'hide_on_screen' => '',
+	  'active' => true,
+	  'description' => '',
+  ));
+
+  endif;
+  

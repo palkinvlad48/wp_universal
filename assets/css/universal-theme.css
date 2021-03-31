@@ -3353,10 +3353,46 @@ body {
   right: 20px;
 }
 
-.wpcf7 textarea {
-  margin-top: -20px;
+/*.wpcf7
+  textarea
+    margin-top: -20px
+  .your-recipient
+    display: none*/
+.page-title {
+  font-family: Roboto Slab;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 40px;
+  line-height: 50px;
+  margin-top: 0;
+  margin-bottom: 27px;
 }
 
-.wpcf7 .your-recipient {
-  display: none;
+.contacts-title {
+  font-size: 18px;
+  line-height: 30px;
+  margin-bottom: 28px;
+}
+
+.contacts-wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: flex-start;
+}
+
+.contacts-wrapper .left {
+  margin-right: 80px;
+}
+
+.contacts-wrapper .right {
+  margin-bottom: 15px;
+}
+
+.contacts-wrapper .right a, .contacts-wrapper .right address {
+  width: 75%;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.85);
 }
