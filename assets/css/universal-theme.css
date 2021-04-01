@@ -3396,3 +3396,12 @@ body {
   text-decoration: none;
   color: rgba(255, 255, 255, 0.85);
 }
+
+.lesson-header {
+  padding: 80px 0;
+  color: #fff;
+}
+
+.video {
+  background-color: gray;
+}

@@ -94,3 +94,27 @@ jQuery(document).ready(function ($) {
   })
 
 });
+/*
+<div id="myVideo"></div>
+
+<script src="{url}"></script>
+<script>
+    var options = {
+    url: "https://vimeo.com/280815263",
+    width: 800
+  };
+  */
+
+function initVimeoPlayer() {
+  var options = {
+    url: "https://vimeo.com/280815263"
+  };
+  var videoPlayer = new Vimeo.Player('myVideo', options);
+
+  videoPlayer.on('play', function() {
+    console.log('Played the video');
+  });
+}
+initVimeoPlayer();
+
+
