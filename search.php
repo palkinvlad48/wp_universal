@@ -1,6 +1,7 @@
 <?php
 get_header(); ?>
 <div class="container">
+  <?php if ( function_exists( 'the_breadcrumbs' ) ) the_breadcrumbs(); ?>
   <h1 class="search-title">Результаты поиска по запросу</h1>
   <div class="search-favourites"> 
     <!--div class="main-digest"-->

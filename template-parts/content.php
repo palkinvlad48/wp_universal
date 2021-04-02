@@ -119,6 +119,7 @@
 		<!--/.container -->
 	</header><!-- / шапка поста -->
   <div class="container">
+	<?php if ( function_exists( 'the_breadcrumbs' ) ) the_breadcrumbs(); ?>
   	<!-- выводим содержимое поста -->
 		<div class="post-content">
 			<?php

@@ -3369,7 +3369,9 @@ body {
 }
 
 .contacts-title {
+  font-family: Lato;
   font-size: 18px;
+  font-weight: 700;
   line-height: 30px;
   margin-bottom: 28px;
 }
@@ -3388,11 +3390,15 @@ body {
 }
 
 .contacts-wrapper .right {
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .contacts-wrapper .right a, .contacts-wrapper .right address {
   width: 75%;
+  margin: 0 0 15px;
+  font-family: Lato;
+  font-weight: 400;
+  font-size: 14px;
   text-decoration: none;
   color: rgba(255, 255, 255, 0.85);
 }
@@ -3404,4 +3410,29 @@ body {
 
 .video {
   background-color: gray;
+}
+
+.breadcrumbs {
+  margin-top: 50px;
+  color: #262D33;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.breadcrumbs__separator {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.breadcrumbs__current {
+  color: blue;
+}
+
+.breadcrumbs__link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.breadcrumbs__link:visited {
+  color: inherit;
 }
