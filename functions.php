@@ -972,6 +972,7 @@ function the_breadcrumbs() {
 		}
 
 		if ( is_category() ) {
+			echo ' ' . $sep . 'Категория' . $after;  //	 my
 			$parents = get_ancestors( get_query_var('cat'), 'category' );
 			foreach ( array_reverse( $parents ) as $cat ) {
 				$position += 1;
@@ -979,14 +980,13 @@ function the_breadcrumbs() {
 				echo sprintf( $link, get_category_link( $cat ), get_cat_name( $cat ), $position );
 			}
 			if ( get_query_var( 'paged' ) ) {
+			
 				$position += 1;
-			//	if ( $position === 1 ) echo 'Категории';//	 my
 				$cat = get_query_var('cat');
 				echo $sep . sprintf( $link, get_category_link( $cat ), get_cat_name( $cat ), $position );
 				echo $sep . $before . sprintf( $text['page'], get_query_var( 'paged' ) ) . $after;
 			} else {
 				if ( $show_current ) {
-				
 					if ( $position >= 1 ) echo $sep;
 					echo $before . sprintf( $text['category'], single_cat_title( '', false ) ) . $after;
 				} elseif ( $show_last_sep ) echo $sep;
@@ -1035,8 +1035,9 @@ function the_breadcrumbs() {
 				if ( $show_current ) echo $sep . $before . get_the_title() . $after;
 				elseif ( $show_last_sep ) echo $sep;
 			} else {
+				echo ' ' . $sep . 'Категория' . $after; // my
 				$cat = get_the_category(); $catID = $cat[0]->cat_ID;
-				$parents = get_ancestors( $catID, 'category' );
+				$parents = get_ancestors( $catID, 'category' ); // my
 				$parents = array_reverse( $parents );
 				$parents[] = $catID;
 				foreach ( $parents as $cat ) {
