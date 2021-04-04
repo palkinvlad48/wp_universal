@@ -3,33 +3,54 @@
 	<header class="entry-header <?php echo get_post_type(); ?>-header" style="background: linear-gradient(0deg, rgba(38,45,51, 0.75), 
     rgba(38,45,51, 0.75))">
   	<div class="container">
+		<?php
+	  			// выводим ссылки на предыдущий и следующий посты
+						the_post_navigation(
+							array(
+								'prev_text' => '<span class="lesson-nav-text" style="color:#fff;">
+										<svg fill="#fff" width="15" height="7" class="icon prev-icon">
+          						<use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#left_arrow"></use>
+        						</svg>
+									' . esc_html__( 'Back to', 'universal' ) . 
+								'</span>',
+								'next_text' => '<span class="lesson-nav-text" style="color:#fff;">' . esc_html__( 'Forward', 'universal' ) . 
+									'<svg fill="#fff" width="15" height="7" class="icon next-icon">	
+										<use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#arrow_next"></use>
+      		  			</svg>
+								</span>',
+						)
+					);
+					?>
+			<!--php if ( function_exists( 'the_breadcrumbs' ) ) the_breadcrumbs(); ? хлебные крошки -->
 			<div class="post-header-wrapper">
+				
 				<div class="post-header-nav">
 					<?php
-						foreach (get_the_category() as $category) {
-							printf(
-								'<a href="%s" class="category-link %s">%s</a>',
-								esc_url( get_category_link( $category )),
-								esc_html( $category -> slug ),
-								esc_html( $category -> name ),
-							);
-						}
+						$args = array(
+							'post_type' => 'lesson'
+						);
+						the_taxonomies( $args );
 					?>
 				</div>
 				<!-- /.post-header-nav  -->
+				<div class="video">
 				<?php 
 					$mylink = get_field('video_link');
-					$pos_youtube = strpos($mylink, 'youtube'); 
+					$pos_youtube = strpos($mylink, 'youtube'); // 'youtu.be' - для типа ссылки "Поделится" 
 					$pos_vimeo = strpos($mylink, 'vimeo');
  				//	echo $mylink;
 					if ($mylink) { 
-						list($begin, $end) = explode('?v=', $mylink);
-					  echo '<p>Отладка: ' . $end . '</p>'; //'i-2qrKrcXa8'; //end ($tmp);
+						//$tmp = explode('.be/', $mylink); // для типа ссылки "Поделится"'?v=', $mylink); //
+						$tmp = explode('?v=', $mylink);
+						$end = end($tmp);
+						//list($begin, $tmp) = explode('?v=', $mylink);
+						//$end = $tmp;
+					  echo '<p>Отладка: ' . $end . '</p>'; //'i-2qrKrcXa8'; 
 					}
 					if ($pos_youtube > -1) {
-						 
+						//if (strpos($video_link, 'youtu.be') !== false) { 
 					?>
-					<div class="video">
+			
 					<iframe width="100%" height="450" src="https://www.youtube.com/embed/<?php echo $end; //'i-2qrKrcXa8';
 						?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; 
 						picture-in-picture" allowfullscreen>
@@ -37,11 +58,14 @@
 					<!-- "https://www.youtube.com/embed/i-2qrKrcXa8"  https://www.youtube.com/watch?v=qyvBFipJAbI&pp=wgIECgIIAQ%3D%3D&feature=push-sd&attr_tag=YE7Ywt-oisL6VCA9%3A6 -->
 					<?php 
 					} 
+			
 					if ($pos_vimeo > -1) {
+						
 					?>
-					<div class="video" id="myVideo" data-vimeo-width="100%" data-vimeo-url="<?php echo $mylink; ?>">
-					</iframe>
+					<iframe src="https://player.vimeo.com/video/<?php echo $mylink;?>" width="100%" height="450" 
+						webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 					<?php
+						
 					}
 					?>
 				</div>
@@ -96,7 +120,7 @@
 
 			wp_link_pages(
 				array(
-					'before' => '<div class="page-links">' . esc_html__( 'Страницы:', 'universal-example' ),
+					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'universal' ),
 					'after'  => '</div>',
 				)
 			);

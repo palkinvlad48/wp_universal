@@ -46,7 +46,7 @@ function universal_theme_comment( $comment, $args, $depth ) {
 			<div class="comment-author vcard">
 			<?php
 				printf(
-					__( '<cite class="comment-author-name">%s</cite>' ),
+					'<cite class="comment-author-name">%s</cite>',
 					get_comment_author_link()
 				);
 			?>
@@ -54,14 +54,14 @@ function universal_theme_comment( $comment, $args, $depth ) {
 					<a href="<?php echo htmlspecialchars( get_comment_link( [ 'post_id'=> $post->ID ] ) ); ?>">
 				<?php
 					printf(
-						__( '%1$s, %2$s' ),
+						'%1$s, %2$s',
 						get_comment_date('F jS'),
 						get_comment_time()	
 					); 
 				?>
 					</a>
 
-		<?php edit_comment_link( __( '(Edit)' ), ' ', '' ); ?>
+		<?php edit_comment_link( '(Edit)', ' ', '' ); ?>
 
 		<?php comment_text(); ?>
 					<div class="comment-reply">
@@ -160,7 +160,7 @@ function universal_theme_comment( $comment, $args, $depth ) {
 
 		comment_form(array (
 			'comment_field' => '<div class="comment-form-comment">' . 
-				'<label class="comment-label" for="comment">' . _x( 'Что вы думаете на этот счет?', 'noun' ) . 
+				'<label class="comment-label" for="comment">' . _e('What do you think about this?', 'Что вы думаете на этот счет?', 'universal') . 
 				'</label></div><div class="comment-wrapper">' . get_avatar( get_current_user_id(), 75) .
 				'<div class="comment-textarea-wrapper">' . 
 				'<textarea class="comment-textarea" id="comment" name="comment" aria-required="true">' . 

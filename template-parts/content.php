@@ -7,7 +7,7 @@
   	    echo get_the_post_thumbnail_url();
   	  }
   	  else {
-  	    echo get_template_directory_uri() . '/assets/images/default.png';
+  	    echo get_template_directory_uri() . 'assets/images/default.png';
   	  }
   		?>
     ); background-repeat: no-repeat; background-size: cover; background-position: center;">
@@ -38,9 +38,9 @@
 										<svg width="15" height="7" class="icon prev-icon">
           						<use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#left_arrow"></use>
         						</svg>
-									' . esc_html__( 'Назад:', 'universal-theme' ) . 
+									' . esc_html__( 'Back to:', 'universal-theme' ) . 
 								'</span>',
-								'next_text' => '<span class="post-nav-next">' . esc_html__( 'Вперед:', 'universal-theme' ) . 
+								'next_text' => '<span class="post-nav-next">' . esc_html__( 'Forward:', 'universal-theme' ) . 
 									'<svg width="15" height="7" class="icon next-icon">	
 										<use xlink:href="' . get_template_directory_uri() . '/assets/images/sprite.svg#arrow_next"></use>
       		  			</svg>
@@ -140,7 +140,7 @@
 
 			wp_link_pages(
 				array(
-					'before' => '<div class="page-links">' . esc_html__( 'Страницы:', 'universal-example' ),
+					'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'universal' ),
 					'after'  => '</div>',
 				)
 			);
@@ -154,7 +154,7 @@
 		<?php 
     	$tags_list = get_the_tag_list( '',  esc_html_x(', ', 'list item separator', 'universal-theme' ) ); 
     	if ( $tags_list ) {
-      	printf( '<span class="tags-links">' . esc_html__('%1$s', 'universal_theme' ) . '</span>',
+      	printf( '<span class="tags-links">' . esc_html__('%1$s', 'universal-theme' ) . '</span>',
       	$tags_list ); //
     	}
 			// Поделиться в соцсетях

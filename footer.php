@@ -1,7 +1,7 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-form-wrapper">
-      <h3 class="footer-form-title">Подпишитесь на нашу рассылку</h3>
+      <h3 class="footer-form-title"><?php _e('Subscribe to our newsletter','Подпишитесь на нашу рассылку', 'universal') ?></h3>
       <form action="https://app.getresponse.com/add_subscriber.html" accept-charset="utf-8" method="post" 
       class="footer-form">
 	    <!-- Поле Email (обязательно) -->
