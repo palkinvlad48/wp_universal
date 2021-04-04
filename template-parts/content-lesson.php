@@ -36,15 +36,15 @@
 				<div class="video">
 				<?php 
 					$mylink = get_field('video_link');
-					$pos_youtube = strpos($mylink, 'youtube'); // 'youtu.be' - для типа ссылки "Поделится" 
+					$vimeo = explode('vimeo.com/', $mylink);
+					$pos_youtube = strpos($mylink, 'youtu.be'); // 'youtu.be' - для типа ссылки "Поделится" 
 					$pos_vimeo = strpos($mylink, 'vimeo');
  				//	echo $mylink;
 					if ($mylink) { 
-						//$tmp = explode('.be/', $mylink); // для типа ссылки "Поделится"'?v=', $mylink); //
-						$tmp = explode('?v=', $mylink);
+						$tmp = explode('.be/', $mylink); // для длинной ссылки: '?v=', $mylink); //
+						//$tmp = explode('?v=', $mylink);
 						$end = end($tmp);
-						//list($begin, $tmp) = explode('?v=', $mylink);
-						//$end = $tmp;
+						
 					  echo '<p>Отладка: ' . $end . '</p>'; //'i-2qrKrcXa8'; 
 					}
 					if ($pos_youtube > -1) {
@@ -55,15 +55,14 @@
 						?>" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; 
 						picture-in-picture" allowfullscreen>
 					</iframe>
-					<!-- "https://www.youtube.com/embed/i-2qrKrcXa8"  https://www.youtube.com/watch?v=qyvBFipJAbI&pp=wgIECgIIAQ%3D%3D&feature=push-sd&attr_tag=YE7Ywt-oisL6VCA9%3A6 -->
+					
 					<?php 
 					} 
-			
 					if ($pos_vimeo > -1) {
-						
+					//else {	
 					?>
-					<iframe src="https://player.vimeo.com/video/<?php echo $mylink;?>" width="100%" height="450" 
-						webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+					<iframe src="https://player.vimeo.com/video/
+                <?php echo end($vimeo); ?>" width="100%" height="450" frameborder="0" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen>
 					<?php
 						
 					}
