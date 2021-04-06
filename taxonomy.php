@@ -10,8 +10,8 @@ get_header('post') ?>
   </h1-->
 <main id="primary" class="site-main">
 	<div class="container">
-	
-
+	<!--h1>Видео-уроки</h1-->
+	<h1 class="category-title"><?php single_cat_title() ?></h1>
 	<?php
     // запускаем цикл вордпресс, прверяем, есть ли посты
 		while ( have_posts() ) :
@@ -20,8 +20,8 @@ get_header('post') ?>
     // находим шаблон для вывода поста в папке template-parts
 			get_template_part( 'template-parts/content-lesson', get_post_type() );
 
-  		endwhile; // Конец цикла Wordpress
-		?>
+  	endwhile; // Конец цикла Wordpress
+	?>
 	
   </div>
 <!-- /.container -->

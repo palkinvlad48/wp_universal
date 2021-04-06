@@ -2,8 +2,8 @@
   <!-- шапка поста -->
 	<header class="entry-header <?php echo get_post_type(); ?>-header" style="background: linear-gradient(0deg, rgba(38,45,51, 0.75), 
     rgba(38,45,51, 0.75))">
-  	<div class="container">
-		<?php
+  	<div class="container lesson-div">
+			<?php
 	  			// выводим ссылки на предыдущий и следующий посты
 						the_post_navigation(
 							array(
@@ -24,11 +24,12 @@
 			<!--php if ( function_exists( 'the_breadcrumbs' ) ) the_breadcrumbs(); ? хлебные крошки -->
 			<div class="post-header-wrapper">
 				
-				<div class="post-header-nav">
+				<div class="post-header-nav lesson">
 					<?php
 						$args = array(
 							'post_type' => 'lesson'
 						);
+						//echo '<a class="lesson">' .  . '</a>'
 						the_taxonomies( $args );
 					?>
 				</div>
@@ -44,11 +45,10 @@
 						$tmp = explode('.be/', $mylink); // для длинной ссылки: '?v=', $mylink); //
 						//$tmp = explode('?v=', $mylink);
 						$end = end($tmp);
-						
-					  echo '<p>Отладка: ' . $end . '</p>'; //'i-2qrKrcXa8'; 
+					  //echo '<p>Отладка: ' . $end . '</p>'; 
 					}
 					if ($pos_youtube > -1) {
-						//if (strpos($video_link, 'youtu.be') !== false) { 
+						
 					?>
 			
 					<iframe width="100%" height="450" src="https://www.youtube.com/embed/<?php echo $end; //'i-2qrKrcXa8';
@@ -76,7 +76,7 @@
 						the_title( '<h1 class="lesson-title">' , '</h1>');
 					else :
 						the_title( '<h2 class="lesson-title"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark">', '</a></h2>' );
-					endif;
+					endif
   				?>
 					
 				</div>
@@ -86,7 +86,7 @@
 			<!--/.post-header-wrapper -->
 				
 				<div class="post-header-info">
-        	<span class="post-header-date">
+        	<span class="lesson-header-date">
 						<svg width="14" height="14" class="icon clock-icon">
 						  <use xlink:href="<?php echo get_template_directory_uri()?>/assets/images/sprite.svg#clock">
 							</use>

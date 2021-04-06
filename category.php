@@ -30,9 +30,9 @@ if ( ! empty( $post_ids ) && ! is_wp_error( $post_ids ) ) {
             echo get_the_post_thumbnail_url( null, 'thumb'); 
           } 
           else {
-              echo get_template_directory_url() . 'assets/images/default.png';
+              echo get_template_directory_uri() . '/assets/images/undefined.png';
             } 
-          ?>" alt="Фоновый рисунок" class="post-card-thumb">
+        ?>" alt="Фоновый рисунок" class="post-card-thumb">
         <div class="post-card-text">
           <div class="post-card-title"><?php echo mb_strimwidth(get_the_title(), 0, 50, '...'); ?></div>
           <p><?php echo mb_strimwidth(get_the_excerpt(), 0, 72, '...'); ?></p>

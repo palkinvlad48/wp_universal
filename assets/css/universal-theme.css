@@ -3403,15 +3403,6 @@ body {
   color: rgba(255, 255, 255, 0.85);
 }
 
-.lesson-header {
-  padding: 80px 0;
-  color: #fff;
-}
-
-.video {
-  background-color: gray;
-}
-
 .breadcrumbs {
   margin-top: 50px;
   color: #262D33;
@@ -3437,11 +3428,34 @@ body {
   color: inherit;
 }
 
-.lesson-header {
-  padding: 80px 0;
+.lesson-nav-text {
+  color: #fff;
+  margin-top: 10px;
+}
+
+.lesson-title {
   color: #fff;
 }
 
-.video {
-  background-color: gray;
+.lesson-div {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+
+.lesson-header-date {
+  color: #fff;
+}
+
+.lesson a {
+  color: lightblue;
+  margin-bottom: 10px;
+}
+
+.lesson a:visited {
+  color: lightblue;
+}
+
+.widget-downloader .widget-link {
+  padding: 0 0 10px;
+  margin-top: -5px;
 }

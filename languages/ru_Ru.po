@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: universal\n"
-"POT-Creation-Date: 2021-04-03 18:29+0300\n"
+"POT-Creation-Date: 2021-04-05 10:44+0300\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: Sky Team\n"
@@ -262,7 +262,7 @@ msgstr "Страница %s"
 #: functions.php:939
 #, php-format
 msgid "Comments page %s"
-msgstr "Страница комментариев %s."
+msgstr "Страница комментариев %s"
 
 #: functions.php:978
 msgid "&nbsp; > &nbsp; Category"
@@ -270,22 +270,34 @@ msgstr "&nbsp; > &nbsp; Категория"
 
 #: functions.php:1041
 msgid "&nbsp; > &nbsp; Category "
-msgstr "&nbsp; > &nbsp; Категория"
+msgstr "&nbsp; > &nbsp; Категория "
 
 #: searchform.php:2
 msgid "Search"
 msgstr "Поиск"
 
-#: template-parts/content-lesson.php:86 template-parts/content.php:130
+#: template-parts/content-lesson.php:14
+#, fuzzy
+#| msgid "Back to:"
+msgid "Back to"
+msgstr "Назад:"
+
+#: template-parts/content-lesson.php:16
+#, fuzzy
+#| msgid "Forward:"
+msgid "Forward"
+msgstr "Вперед:"
+
+#: template-parts/content-lesson.php:109 template-parts/content.php:130
 #, php-format
 msgid "Continue reading<span class=\"screen-reader-text\"> \"%s\"</span>"
 msgstr "Продолжить чтение<span class=\"screen-reader-text\"> \"%s\"</span>"
 
-#: template-parts/content-lesson.php:99 template-parts/content.php:143
+#: template-parts/content-lesson.php:122 template-parts/content.php:143
 msgid "Pages:"
-msgstr "Страницы: "
+msgstr "Страницы:"
 
-#: template-parts/content-lesson.php:113 template-parts/content.php:157
+#: template-parts/content-lesson.php:136 template-parts/content.php:157
 #, php-format
 msgid "%1$s"
 msgstr "%1$s"

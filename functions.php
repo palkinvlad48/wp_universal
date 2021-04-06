@@ -369,6 +369,7 @@ class Downloader_Widget extends WP_Widget {
 		?>
 		<style type="text/css">
 			.downloader_widget a{ display:inline; }
+
 		</style>
 		<?php
 	}
