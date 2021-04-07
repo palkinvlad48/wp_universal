@@ -3455,6 +3455,10 @@ body {
   color: lightblue;
 }
 
+.lesson-main {
+  color: blue;
+}
+
 .widget-downloader .widget-link {
   padding: 0 0 10px;
   margin-top: -5px;

@@ -4,19 +4,7 @@
   <h1 class="category-title">
     <?php single_cat_title() ?>
   </h1>
-  <!--php  // пример вывода всех тегов рубрики
-$post_ids = get_objects_in_term( get_query_var( 'cat' ), 'category' );
-if ( ! empty( $post_ids ) && ! is_wp_error( $post_ids ) ) {
-	$tags = wp_get_object_terms( $post_ids, 'post_tag' );
-	if ( ! empty( $tags ) && ! is_wp_error( $tags ) ) {
-?>
-    <ul>
-    <php foreach( $tags as $tag ) { ?>
-      <li><a href="<php echo get_term_link( $tag, 'post_tag' ); ?>"><php echo $tag->name; ?></a></li>
-    <php } ?>
-    </ul>
-	<php } ?>
-<php } ?--> <!-- конец примера -->
+
   <div class="post-list">
     <!--div class="post-wrap"-->
     <!-- выводим посты -->

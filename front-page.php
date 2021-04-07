@@ -134,7 +134,7 @@
     
   <!-- выводим записи -->      
     <li class="article-item">
-      <a class="article-permalink" href="<php echo get_the_permalink(); ?>">
+      <a class="article-permalink" href="<?php echo get_the_permalink(); ?>">
        <h4 class="article-title"><?php echo mb_strimwidth(get_the_title(), 0, 60, '...'); ?></h4>
       </a>
       <img width="65" height="65" src="<?php 
